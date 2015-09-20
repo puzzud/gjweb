@@ -1,0 +1,36 @@
+<!doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+  	<title>Game Title</title>
+	<meta charset="UTF-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="mobile-web-app-capable" context="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
+    <link rel="icon" size="196x196" href="assets/graphics/icon.png">
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen"/>
+
+	<section>
+		<script type="text/javascript" src="src/phaser/phaser.js"></script>
+		
+		<script type="text/javascript" src="src/game/JsUtils.js"></script>
+
+		<script type="text/javascript" src="src/game/Boot.js"></script>
+		<script type="text/javascript" src="src/game/Preloader.js"></script>
+		<script type="text/javascript" src="src/game/MainMenu.js"></script>
+		<script type="text/javascript" src="src/game/Game.js"></script>
+	</section>
+</head>
+
+<body>
+	<script type="text/javascript">
+		window.onload = function()
+		{
+		  GameTitle.run();
+		}
+	</script>
+</body>
+
+</html>
