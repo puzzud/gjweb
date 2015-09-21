@@ -2,6 +2,7 @@
 GameTitle =
 {
   title: "Game Title",
+  projectWebsite: "https://github.com/puzzud/gj2dweb",
 
   screenWidth: 960,
   screenHeight: 540
