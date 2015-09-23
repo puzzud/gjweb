@@ -7,7 +7,7 @@ GameTitle.Game = function( game )
 
 GameTitle.Game.prototype.init = function()
 {
-  
+  //this.layer3d = new GameTitle.GameLayer3d( this.game );
 };
 
 GameTitle.Game.prototype.create = function()
@@ -19,7 +19,7 @@ GameTitle.Game.prototype.create = function()
 
 GameTitle.Game.prototype.update = function()
 {
-  
+  //this.layer3d.update();
 };
 
 GameTitle.Game.prototype.pointerDown = function()

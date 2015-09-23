@@ -7,7 +7,7 @@ GameTitle.MainMenu = function( game )
 
 GameTitle.MainMenu.prototype.init = function()
 {
-  
+  this.layer3d = new GameTitle.GameLayer3d( this.game );
 };
 
 GameTitle.MainMenu.prototype.preload = function()
@@ -72,4 +72,9 @@ GameTitle.MainMenu.prototype.exitGame = function()
 {
   // TODO: Redirect based on native or web application.
   window.location = GameTitle.projectWebsite;
+};
+
+GameTitle.MainMenu.prototype.update = function()
+{
+  this.layer3d.update();
 };
