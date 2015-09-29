@@ -12,7 +12,7 @@ GameTitle.Game.prototype.init = function()
 
 GameTitle.Game.prototype.create = function()
 {
-  this.stage.backgroundColor = "#171642"; 
+  this.stage.backgroundColor = 0x171642; 
   
   this.input.onDown.add( this.pointerDown, this );
 };

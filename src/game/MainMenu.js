@@ -17,7 +17,7 @@ GameTitle.MainMenu.prototype.preload = function()
 
 GameTitle.MainMenu.prototype.create = function()
 {
-  this.stage.backgroundColor = "#444444"; 
+  this.stage.backgroundColor = 0x444444; 
 
   // Title.
   var titleTextX = this.world.centerX;

@@ -19,7 +19,7 @@ GameTitle.Preloader.prototype.preload = function()
 
 GameTitle.Preloader.prototype.create = function()
 {
-  this.stage.backgroundColor = "#222222";
+  this.stage.backgroundColor = 0x222222;
 };
 
 GameTitle.Preloader.prototype.update = function()

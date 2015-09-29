@@ -40,7 +40,7 @@ GameTitle.Boot.prototype.init = function()
   this.input.maxPointers = 1;
   this.input.addPointer();
 
-  this.stage.backgroundColor = "#000000";
+  this.stage.backgroundColor = 0x000000;
 };
 
 GameTitle.Boot.prototype.preload = function()
