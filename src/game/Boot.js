@@ -9,7 +9,10 @@ GameTitle =
   screenWidth: 960,
   screenHeight: 540,
 
+  buttonTextColor: 0xffffff,
+  buttonTextOverColor: 0xffff00,
   buttonStyle: { font: "32px Arial", fill: "#ffffff" }
+
 };
 
 GameTitle.run = function()
@@ -33,9 +36,28 @@ GameTitle.createTextButton = function( x, y, text, callback, callbackContext )
   var label = new Phaser.Text( this.game, 0, 0, text, this.buttonStyle );
   label.anchor.setTo( 0.5, 0.5 );
 
+  label.tint = this.buttonTextColor;
+
   button.addChild( label );
 
+  button.events.onInputOver.add( GameTitle.textButtonOnInputOver, callbackContext );
+  button.events.onInputOut.add( GameTitle.textButtonOnInputOut, callbackContext );
+
   return button;
+};
+
+GameTitle.textButtonOnInputOver = function( button, pointer )
+{
+  button.children[0].tint = GameTitle.buttonTextOverColor;
+
+  this.game.add.tween( button.scale ).to( { x: 1.125, y: 1.125 }, 125, Phaser.Easing.Linear.None, true );
+};
+
+GameTitle.textButtonOnInputOut = function( button, pointer )
+{
+  button.children[0].tint = GameTitle.buttonTextColor;
+
+  this.game.add.tween( button.scale ).to( { x: 1.0, y: 1.0 }, 125, Phaser.Easing.Linear.None, true );
 };
 
 /** @constructor */
