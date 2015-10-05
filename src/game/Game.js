@@ -1,7 +1,7 @@
 /** @constructor */
 GameTitle.Game = function( game )
 {
-  
+  this.bell = null;
 };
 
 GameTitle.Game.prototype.init = function()
@@ -28,8 +28,10 @@ GameTitle.Game.prototype.create = function()
   allTextGroup.alpha = 0.0;
 
   this.game.add.tween( allTextGroup ).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true );
+
+  this.bell = this.game.add.audio( "bell2" );
   
-  //this.input.onDown.add( this.pointerDown, this );
+  this.input.onDown.add( this.pointerDown, this );
 };
 
 GameTitle.Game.prototype.update = function()
@@ -37,12 +39,17 @@ GameTitle.Game.prototype.update = function()
   
 };
 
-GameTitle.Game.prototype.pointerDown = function()
+GameTitle.Game.prototype.pointerDown = function( pointer )
 {
-
+  this.makeImpact( pointer.position );
 };
 
 GameTitle.Game.prototype.returnToMainMenu = function()
 {
   this.state.start( "MainMenu" );
+};
+
+GameTitle.Game.prototype.makeImpact = function( position )
+{
+  this.bell.play();
 };

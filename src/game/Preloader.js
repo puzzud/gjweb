@@ -2,9 +2,6 @@
 GameTitle.Preloader = function( game )
 {
   this.preloader = null;
-
-  this.ready = false;
-  this.soundDecoded = false;
 };
 
 GameTitle.Preloader.prototype.init = function()
@@ -14,20 +11,26 @@ GameTitle.Preloader.prototype.init = function()
 
 GameTitle.Preloader.prototype.preload = function()
 {
-  this.soundDecoded = true; // TODO: Remove this when adding sounds & decoder callback.
+  this.load.audio( "bell2", "assets/sounds/bell2.wav" );
 };
 
 GameTitle.Preloader.prototype.create = function()
 {
   this.stage.backgroundColor = 0x222222;
+
+  var bell2 = this.game.add.audio( "bell2" );
+
+  var soundList = [bell2];
+
+  this.sound.setDecodedCallback( soundList, this.allSoundsDecoded, this );
 };
 
-GameTitle.Preloader.prototype.update = function()
+GameTitle.Preloader.prototype.allSoundsDecoded = function()
 {
-  if( this.soundDecoded )
-  {
-    this.ready = true;
+  this.start();
+};
 
-    this.state.start( "MainMenu" );
-  }
+GameTitle.Preloader.prototype.start = function()
+{
+  this.state.start( "MainMenu" );
 };
