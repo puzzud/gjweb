@@ -1,6 +1,8 @@
 /** @constructor */
 GameTitle.Game = function( game )
 {
+  this.circleSprite = null;
+
   this.bell = null;
 };
 
@@ -29,6 +31,8 @@ GameTitle.Game.prototype.create = function()
 
   this.game.add.tween( allTextGroup ).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true );
 
+  this.circleSprite = this.createCircleSprite();
+
   this.bell = this.game.add.audio( "bell2" );
   
   this.input.onDown.add( this.pointerDown, this );
@@ -52,4 +56,40 @@ GameTitle.Game.prototype.returnToMainMenu = function()
 GameTitle.Game.prototype.makeImpact = function( position )
 {
   this.bell.play();
+
+  this.resetCircleSprite( this.circleSprite, position );
+};
+
+GameTitle.Game.prototype.createCircleSprite = function()
+{
+  var bmd = this.game.add.bitmapData( 128, 128 );
+
+  bmd.ctx.fillStyle = "#999999";
+  bmd.ctx.beginPath();
+  bmd.ctx.arc( 64, 64, 64, 0, Math.PI * 2, true ); 
+  bmd.ctx.closePath();
+  bmd.ctx.fill();
+
+  var sprite = this.game.add.sprite( 0, 0, bmd );
+  sprite.anchor.set( 0.5 );
+
+  sprite.alpha = 0.0;
+
+  return sprite;
+};
+
+GameTitle.Game.prototype.resetCircleSprite = function( circleSprite, position )
+{
+  circleSprite.position.set( position.x, position.y );
+
+  circleSprite.scale.set( 0.5 );
+  circleSprite.alpha = 1.0;
+
+  var r = this.game.rnd.integerInRange( 64, 255 );
+  var g = this.game.rnd.integerInRange( 64, 255 );
+  var b = this.game.rnd.integerInRange( 64, 255 );
+  circleSprite.tint = ( r << 16 ) + ( g << 8 ) + b;
+
+  this.game.add.tween( circleSprite.scale ).to( { x: 4.0, y: 4.0 }, 500, Phaser.Easing.Sinusoidal.InOut, true );
+  this.game.add.tween( circleSprite ).to( { alpha: 0.0 }, 500, Phaser.Easing.Sinusoidal.InOut, true );
 };
