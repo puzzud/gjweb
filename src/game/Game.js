@@ -1,6 +1,8 @@
 /** @constructor */
 GameTitle.Game = function( game )
 {
+  this.pointer = null;
+
   this.circleSprite = null;
 
   this.bell = null;
@@ -45,6 +47,7 @@ GameTitle.Game.prototype.update = function()
 
 GameTitle.Game.prototype.pointerDown = function( pointer )
 {
+  this.pointer = pointer;
   this.makeImpact( pointer.position );
 };
 
@@ -55,6 +58,15 @@ GameTitle.Game.prototype.returnToMainMenu = function()
 
 GameTitle.Game.prototype.makeImpact = function( position )
 {
+  if( !!this.bell._sound )
+  {
+    this.adjustBellPitch();
+  }
+  else
+  {
+    this.bell.onPlay.add( this.adjustBellPitch, this );
+  }
+
   this.bell.play();
 
   this.resetCircleSprite( this.circleSprite, position );
@@ -78,6 +90,12 @@ GameTitle.Game.prototype.createCircleSprite = function()
   return sprite;
 };
 
+GameTitle.Game.prototype.adjustBellPitch = function()
+{
+  var verticalScale = 4.0 * ( 1.0 - ( this.pointer.position.y / this.game.world.height ) );
+  this.bell._sound.playbackRate.value = verticalScale;
+};
+
 GameTitle.Game.prototype.resetCircleSprite = function( circleSprite, position )
 {
   circleSprite.position.set( position.x, position.y );
@@ -85,9 +103,11 @@ GameTitle.Game.prototype.resetCircleSprite = function( circleSprite, position )
   circleSprite.scale.set( 0.5 );
   circleSprite.alpha = 1.0;
 
-  var r = this.game.rnd.integerInRange( 64, 255 );
+  var verticalScale = ( 1.0 - ( this.pointer.position.y / this.game.world.height ) );
+  var colorAdjustment = ( verticalScale * 255 ) | 0;
+  var r = 255 - colorAdjustment;
   var g = this.game.rnd.integerInRange( 64, 255 );
-  var b = this.game.rnd.integerInRange( 64, 255 );
+  var b = 0 + colorAdjustment;
   circleSprite.tint = ( r << 16 ) + ( g << 8 ) + b;
 
   this.game.add.tween( circleSprite.scale ).to( { x: 4.0, y: 4.0 }, 500, Phaser.Easing.Sinusoidal.InOut, true );
