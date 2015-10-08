@@ -115,9 +115,20 @@ GameTitle.Game.prototype.resetCircleSprite = function( circleSprite, position )
 
   var verticalScale = ( 1.0 - ( this.pointer.position.y / this.game.world.height ) );
   var colorAdjustment = ( verticalScale * 255 ) | 0;
+  
   var r = 255 - colorAdjustment;
-  var g = this.game.rnd.integerInRange( 64, 255 );
+  var g = 63;
   var b = 0 + colorAdjustment;
+
+  if( colorAdjustment < 128 )
+  {
+    g += b;
+  }
+  else
+  {
+    g += r;
+  }
+
   circleSprite.tint = ( r << 16 ) + ( g << 8 ) + b;
 
   this.game.add.tween( circleSprite.scale ).to( { x: 4.0, y: 4.0 }, 500, Phaser.Easing.Sinusoidal.InOut, true );
