@@ -6,6 +6,7 @@ GameTitle.Game = function( game )
   this.circleSprite = null;
 
   this.bell = null;
+  this.soundList = [];
 };
 
 GameTitle.Game.prototype.init = function()
@@ -39,6 +40,7 @@ GameTitle.Game.prototype.create = function()
   this.game.world.bringToTop( allTextGroup );
 
   this.bell = this.game.add.audio( "bell2" );
+  this.soundList.push( this.bell );
   
   var background = this.game.add.sprite( 0, 0 );
   background.fixedToCamera = true;
