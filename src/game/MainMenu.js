@@ -36,13 +36,13 @@ GameTitle.MainMenu.prototype.setupInput = function()
 
   // Buttons.
   this.startButton = GameTitle.createTextButton( this.game.world.centerX, this.game.world.centerY + 48 * 0,
-                                                 "Start", this.startGame, this );
+                                                 "Play", this.startGame, this );
 
   this.aboutButton = GameTitle.createTextButton( this.game.world.centerX, this.game.world.centerY + 48 * 1,
                                                  "About", this.goToAboutScreen, this );
 
   this.exitButton  = GameTitle.createTextButton( this.game.world.centerX, this.game.world.centerY + 48 * 2,
-                                                 "Exit", this.exitGame, this );
+                                                 "Quit", this.exitGame, this );
 
   this.buttonList.length = 0;
   this.buttonList.push( this.startButton );
