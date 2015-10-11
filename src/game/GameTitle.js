@@ -9,6 +9,8 @@ GameTitle =
   screenWidth: 960,
   screenHeight: 540,
 
+  titleStyle: { font: "72px Arial", fill: "#ffffff" },
+
   buttonTextColor: 0xffffff,
   buttonTextOverColor: 0xffff00,
   buttonStyle: { font: "32px Arial", fill: "#ffffff" },
@@ -25,8 +27,81 @@ GameTitle.run = function()
   this.game.state.add( "Preloader", GameTitle.Preloader );
   this.game.state.add( "MainMenu", GameTitle.MainMenu );
   this.game.state.add( "Game", GameTitle.Game );
+  this.game.state.add( "About", GameTitle.About );
 
   this.game.state.start( "Boot" );
+};
+
+GameTitle.setupButtonKeys = function( state )
+{
+  state.cursorKeys = state.input.keyboard.createCursorKeys();
+  state.cursorKeys.up.onDown.add( GameTitle.upButtonDown, state );
+  state.cursorKeys.down.onDown.add( GameTitle.downButtonDown, state );
+
+  state.spaceBar = state.input.keyboard.addKey( Phaser.Keyboard.SPACEBAR );
+  state.spaceBar.onDown.add( GameTitle.activateButtonDown, state );
+  state.enterKey = state.input.keyboard.addKey( Phaser.Keyboard.ENTER );
+  state.enterKey.onDown.add( GameTitle.activateButtonDown, state );
+};
+
+GameTitle.cycleActiveButton = function( direction )
+{
+  var state = this.game.state.getCurrentState();
+
+  var index = -1;
+
+  // Cycle active button.
+  if( GameTitle.activeButton === null )
+  {
+    index = 0;
+  }
+  else
+  {
+    index = state.buttonList.indexOf( GameTitle.activeButton );
+    GameTitle.setActiveButton( null );
+
+    index += direction;
+    if( index >= state.buttonList.length )
+    {
+      index = 0;
+    }
+    else
+    if( index < 0 )
+    {
+      index = state.buttonList.length - 1;
+    }
+  }
+
+  GameTitle.setActiveButton( state.buttonList[index] );
+};
+
+GameTitle.upButtonDown = function( button )
+{
+  GameTitle.cycleActiveButton( -1 );
+};
+
+GameTitle.downButtonDown = function( button )
+{
+  GameTitle.cycleActiveButton( 1 );
+};
+
+GameTitle.activateButtonDown = function( button )
+{
+  var activeButton = GameTitle.activeButton;
+  if( activeButton === null )
+  {
+    // Default active button to start button for quick navigation.
+    activeButton = this.buttonList[0];
+    if( activeButton === undefined )
+    {
+      activeButton = null;
+    }
+    
+    GameTitle.setActiveButton( activeButton );
+  }
+  
+  // Directly call state's logic for this button.
+  activeButton.activate.call( this.game.state.getCurrentState(), activeButton, null );
 };
 
 GameTitle.createTextButton = function( x, y, text, callback, callbackContext )
@@ -43,6 +118,8 @@ GameTitle.createTextButton = function( x, y, text, callback, callbackContext )
 
   button.events.onInputOver.add( GameTitle.textButtonOnInputOver, callbackContext );
   button.events.onInputOut.add( GameTitle.textButtonOnInputOut, callbackContext );
+
+  button.activate = callback;
 
   return button;
 };
@@ -72,4 +149,24 @@ GameTitle.textButtonOnInputOver = function( button, pointer )
 GameTitle.textButtonOnInputOut = function( button, pointer )
 {
   GameTitle.setActiveButton( null );
+};
+
+GameTitle.setupTitleAndText = function( state )
+{
+  // Title.
+  var titleTextX = state.world.centerX;
+  var titleTextY = ( state.world.height * ( 1 - 0.67 ) ) | 0;
+  
+  var titleText = state.add.text( titleTextX, titleTextY,
+                                  GameTitle.title, GameTitle.titleStyle );
+
+  titleText.anchor.setTo( 0.5 );
+
+  // All text.
+  var allTextGroup = state.game.add.group();
+  allTextGroup.add( titleText );
+  allTextGroup.add( state.buttonGroup );
+  allTextGroup.alpha = 0.0;
+
+  this.game.add.tween( allTextGroup ).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true );
 };
