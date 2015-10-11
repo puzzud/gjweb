@@ -35,8 +35,6 @@ GameTitle.MainMenu.prototype.setupInput = function()
   GameTitle.setupButtonKeys( this );
 
   // Buttons.
-  GameTitle.activeButton = null;
-  
   this.startButton = GameTitle.createTextButton( this.game.world.centerX, this.game.world.centerY + 48 * 0,
                                                  "Start", this.startGame, this );
 
@@ -55,6 +53,9 @@ GameTitle.MainMenu.prototype.setupInput = function()
   this.buttonGroup.add( this.startButton );
   this.buttonGroup.add( this.aboutButton );
   this.buttonGroup.add( this.exitButton );
+
+  GameTitle.activeButton = null;
+  GameTitle.setActiveButton( this.startButton );
 };
 
 GameTitle.MainMenu.prototype.setupGraphics = function()
