@@ -57,8 +57,7 @@ GameTitle.cycleActiveButton = function( direction )
   }
   else
   {
-    index = state.buttonList.indexOf( GameTitle.activeButton );
-    GameTitle.setActiveButton( null );
+    var currentIndex = index = state.buttonList.indexOf( GameTitle.activeButton );
 
     index += direction;
     if( index >= state.buttonList.length )
@@ -70,6 +69,14 @@ GameTitle.cycleActiveButton = function( direction )
     {
       index = state.buttonList.length - 1;
     }
+
+    if( currentIndex === index )
+    {
+      // No need to change active buttons.
+      return;
+    }
+
+    GameTitle.setActiveButton( null );
   }
 
   GameTitle.setActiveButton( state.buttonList[index] );
