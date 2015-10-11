@@ -127,7 +127,9 @@ GameTitle.MainMenu.prototype.activateButtonDown = function( button )
   var activeButton = GameTitle.activeButton;
   if( activeButton === null )
   {
-    return;
+    // Default active button to start button for quick navigation.
+    activeButton = this.startButton;
+    GameTitle.setActiveButton( activeButton );
   }
 
   // TODO: Probably a better way to acquire and execute each button's
