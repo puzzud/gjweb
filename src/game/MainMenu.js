@@ -8,6 +8,7 @@ GameTitle.MainMenu = function( game )
   this.buttonList = [];
   this.startButton = null;
   this.exitButton = null;
+  this.buttonGroup = null;
 
   this.titleStyle = { font: "72px Arial", fill: "#ffffff" };
 };
@@ -26,17 +27,12 @@ GameTitle.MainMenu.prototype.create = function()
 {
   this.stage.backgroundColor = 0x444444; 
 
-  // Title.
-  var titleTextX = this.world.centerX;
-  var titleTextY = ( this.world.height * ( 1 - 0.67 ) ) | 0;
-  
-  var titleText = this.add.text( this.world.centerX, titleTextY - 32,
-                                 GameTitle.title, this.titleStyle );
+  this.setupInput();
+  this.setupGraphics();
+};
 
-  titleText.anchor.setTo( 0.5 );
-
-  this.game.add.tween( titleText ).to( { y: titleTextY }, 500, Phaser.Easing.Bounce.Out, true );
-
+GameTitle.MainMenu.prototype.setupInput = function()
+{
   this.cursorKeys = this.input.keyboard.createCursorKeys();
   this.cursorKeys.up.onDown.add( this.upButtonDown, this );
   this.cursorKeys.down.onDown.add( this.downButtonDown, this );
@@ -59,14 +55,28 @@ GameTitle.MainMenu.prototype.create = function()
   this.buttonList.push( this.startButton );
   this.buttonList.push( this.exitButton );
 
-  var buttonGroup = this.game.add.group();
-  buttonGroup.add( this.startButton );
-  buttonGroup.add( this.exitButton );
+  this.buttonGroup = this.game.add.group();
+  this.buttonGroup.add( this.startButton );
+  this.buttonGroup.add( this.exitButton );
+};
+
+GameTitle.MainMenu.prototype.setupGraphics = function()
+{
+  // Title.
+  var titleTextX = this.world.centerX;
+  var titleTextY = ( this.world.height * ( 1 - 0.67 ) ) | 0;
+  
+  var titleText = this.add.text( this.world.centerX, titleTextY - 32,
+                                 GameTitle.title, this.titleStyle );
+
+  titleText.anchor.setTo( 0.5 );
+
+  this.game.add.tween( titleText ).to( { y: titleTextY }, 500, Phaser.Easing.Bounce.Out, true );
 
   // All text.
   var allTextGroup = this.game.add.group();
   allTextGroup.add( titleText );
-  allTextGroup.add( buttonGroup );
+  allTextGroup.add( this.buttonGroup );
   allTextGroup.alpha = 0.0;
 
   this.game.add.tween( allTextGroup ).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true );

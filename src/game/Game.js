@@ -6,6 +6,7 @@ GameTitle.Game = function( game )
   this.escapeKey = null;
 
   this.exitButton = null;
+  this.buttonGroup = null;
 
   this.circleSprite = null;
 
@@ -22,6 +23,13 @@ GameTitle.Game.prototype.create = function()
 {
   this.stage.backgroundColor = 0x171642; 
 
+  this.setupInput();
+  this.setupGraphics();
+  this.setupSounds();
+};
+
+GameTitle.Game.prototype.setupInput = function()
+{
   this.escapeKey = this.input.keyboard.addKey( Phaser.Keyboard.ESC );
   this.escapeKey.onDown.add( this.escapeButtonDown, this );
 
@@ -34,12 +42,15 @@ GameTitle.Game.prototype.create = function()
   this.exitButton.position.x = this.game.world.width - this.exitButton.width - 16;
   this.exitButton.input.priorityID = 1;
 
-  var buttonGroup = this.game.add.group();
-  buttonGroup.add( this.exitButton );
+  this.buttonGroup = this.game.add.group();
+  this.buttonGroup.add( this.exitButton );
+};
 
+GameTitle.Game.prototype.setupGraphics = function()
+{
   // All text.
   var allTextGroup = this.game.add.group();
-  allTextGroup.add( buttonGroup );
+  allTextGroup.add( this.buttonGroup );
   allTextGroup.alpha = 0.0;
 
   this.game.add.tween( allTextGroup ).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true );
@@ -48,9 +59,6 @@ GameTitle.Game.prototype.create = function()
 
   this.game.world.bringToTop( allTextGroup );
 
-  this.bell = this.game.add.audio( "bell2" );
-  this.soundList.push( this.bell );
-  
   var background = this.game.add.sprite( 0, 0 );
   background.fixedToCamera = true;
   background.scale.setTo( this.game.width, this.game.height );
@@ -59,6 +67,12 @@ GameTitle.Game.prototype.create = function()
   background.events.onInputDown.add( this.pointerDown, this );
 
   this.game.world.sendToBack( background );
+};
+
+GameTitle.Game.prototype.setupSounds = function()
+{
+  this.bell = this.game.add.audio( "bell2" );
+  this.soundList.push( this.bell );
 };
 
 GameTitle.Game.prototype.update = function()
