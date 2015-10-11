@@ -11,8 +11,9 @@ GameTitle =
 
   buttonTextColor: 0xffffff,
   buttonTextOverColor: 0xffff00,
-  buttonStyle: { font: "32px Arial", fill: "#ffffff" }
+  buttonStyle: { font: "32px Arial", fill: "#ffffff" },
 
+  activeButton: null
 };
 
 GameTitle.run = function()
@@ -46,16 +47,29 @@ GameTitle.createTextButton = function( x, y, text, callback, callbackContext )
   return button;
 };
 
+GameTitle.setActiveButton = function( button )
+{
+  if( GameTitle.activeButton !== null )
+  {
+    GameTitle.activeButton.children[0].tint = GameTitle.buttonTextColor;
+    this.game.add.tween( GameTitle.activeButton.scale ).to( { x: 1.0, y: 1.0 }, 125, Phaser.Easing.Linear.None, true );
+  }
+
+  GameTitle.activeButton = button;
+
+  if( button !== null )
+  {
+    button.children[0].tint = GameTitle.buttonTextOverColor;
+    this.game.add.tween( button.scale ).to( { x: 1.125, y: 1.125 }, 125, Phaser.Easing.Linear.None, true );
+  }
+};
+
 GameTitle.textButtonOnInputOver = function( button, pointer )
 {
-  button.children[0].tint = GameTitle.buttonTextOverColor;
-
-  this.game.add.tween( button.scale ).to( { x: 1.125, y: 1.125 }, 125, Phaser.Easing.Linear.None, true );
+  GameTitle.setActiveButton( button );
 };
 
 GameTitle.textButtonOnInputOut = function( button, pointer )
 {
-  button.children[0].tint = GameTitle.buttonTextColor;
-
-  this.game.add.tween( button.scale ).to( { x: 1.0, y: 1.0 }, 125, Phaser.Easing.Linear.None, true );
+  GameTitle.setActiveButton( null );
 };

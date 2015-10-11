@@ -3,6 +3,10 @@ GameTitle.Game = function( game )
 {
   this.pointer = null;
 
+  this.escapeKey = null;
+
+  this.exitButton = null;
+
   this.circleSprite = null;
 
   this.bell = null;
@@ -18,15 +22,20 @@ GameTitle.Game.prototype.create = function()
 {
   this.stage.backgroundColor = 0x171642; 
 
-  // Buttons.
-  var exitButton = GameTitle.createTextButton( 0, 32,
-                                               "Exit", this.returnToMainMenu, this );
+  this.escapeKey = this.input.keyboard.addKey( Phaser.Keyboard.ESC );
+  this.escapeKey.onDown.add( this.escapeButtonDown, this );
 
-  exitButton.position.x = this.game.world.width - exitButton.width - 16;
-  exitButton.input.priorityID = 1;
+  // Buttons.
+  GameTitle.activeButton = null;
+
+  this.exitButton = GameTitle.createTextButton( 0, 32,
+                                                "Exit", this.returnToMainMenu, this );
+
+  this.exitButton.position.x = this.game.world.width - this.exitButton.width - 16;
+  this.exitButton.input.priorityID = 1;
 
   var buttonGroup = this.game.add.group();
-  buttonGroup.add( exitButton );
+  buttonGroup.add( this.exitButton );
 
   // All text.
   var allTextGroup = this.game.add.group();
@@ -55,6 +64,13 @@ GameTitle.Game.prototype.create = function()
 GameTitle.Game.prototype.update = function()
 {
   
+};
+
+GameTitle.Game.prototype.escapeButtonDown = function( button )
+{
+  GameTitle.setActiveButton( this.exitButton );
+
+  this.returnToMainMenu();
 };
 
 GameTitle.Game.prototype.pointerDown = function( sprite, pointer )
