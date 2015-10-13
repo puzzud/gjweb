@@ -4,6 +4,8 @@ GameTitle.Boot = function( game )
   
 };
 
+GameTitle.Boot.stateKey = "Boot";
+
 GameTitle.Boot.prototype.init = function()
 {
   this.stage.disableVisibilityChange = false;
@@ -27,5 +29,5 @@ GameTitle.Boot.prototype.preload = function()
 
 GameTitle.Boot.prototype.create = function()
 { 
-  this.state.start( "Preloader" );
+  this.state.start( GameTitle.Preloader.stateKey );
 };

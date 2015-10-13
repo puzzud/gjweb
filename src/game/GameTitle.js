@@ -48,13 +48,13 @@ GameTitle.run = function()
   this.game = new Phaser.Game( this.screenWidth, this.screenHeight,
                                Phaser.AUTO, "", this );
 
-  this.game.state.add( "Boot", GameTitle.Boot );
-  this.game.state.add( "Preloader", GameTitle.Preloader );
-  this.game.state.add( "MainMenu", GameTitle.MainMenu );
-  this.game.state.add( "Game", GameTitle.Game );
-  this.game.state.add( "About", GameTitle.About );
+  this.game.state.add( GameTitle.Boot.stateKey, GameTitle.Boot );
+  this.game.state.add( GameTitle.Preloader.stateKey, GameTitle.Preloader );
+  this.game.state.add( GameTitle.MainMenu.stateKey, GameTitle.MainMenu );
+  this.game.state.add( GameTitle.Game.stateKey, GameTitle.Game );
+  this.game.state.add( GameTitle.About.stateKey, GameTitle.About );
 
-  this.game.state.start( "Boot" );
+  this.game.state.start( GameTitle.Boot.stateKey );
 };
 
 GameTitle.contributorComparator = function( a, b )

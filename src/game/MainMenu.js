@@ -12,6 +12,8 @@ GameTitle.MainMenu = function( game )
   this.buttonGroup = null;
 };
 
+GameTitle.MainMenu.stateKey = "MainMenu";
+
 GameTitle.MainMenu.prototype.init = function()
 {
   this.layer3d = new GameTitle.GameLayer3d( this.game );
@@ -65,12 +67,12 @@ GameTitle.MainMenu.prototype.setupGraphics = function()
 
 GameTitle.MainMenu.prototype.startGame = function()
 { 
-  this.state.start( "Game" );
+  this.state.start( GameTitle.Game.stateKey );
 };
 
 GameTitle.MainMenu.prototype.goToAboutScreen = function()
 {
-  this.state.start( "About" );
+  this.state.start( GameTitle.About.stateKey );
 };
 
 GameTitle.MainMenu.prototype.exitGame = function()

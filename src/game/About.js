@@ -12,6 +12,8 @@ GameTitle.About = function( game )
   this.contributorListStyle = { font: "32px Arial", fill: "#ffffff" };
 };
 
+GameTitle.About.stateKey = "About";
+
 GameTitle.About.prototype.init = function()
 {
   
@@ -63,7 +65,7 @@ GameTitle.About.prototype.setupGraphics = function( textStartYPosition )
 
 GameTitle.About.prototype.returnToMainMenu = function()
 {
-  this.state.start( "MainMenu" );
+  this.state.start( GameTitle.MainMenu.stateKey );
 };
 
 GameTitle.About.prototype.setupAuthorText = function( textStartYPosition )

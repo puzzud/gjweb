@@ -14,6 +14,8 @@ GameTitle.Game = function( game )
   this.soundList = [];
 };
 
+GameTitle.Game.stateKey = "Game";
+
 GameTitle.Game.prototype.init = function()
 {
   
@@ -95,7 +97,7 @@ GameTitle.Game.prototype.pointerDown = function( sprite, pointer )
 
 GameTitle.Game.prototype.returnToMainMenu = function()
 {
-  this.state.start( "MainMenu" );
+  this.state.start( GameTitle.MainMenu.stateKey );
 };
 
 GameTitle.Game.prototype.makeImpact = function( position )

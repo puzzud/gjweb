@@ -7,6 +7,8 @@ GameTitle.Preloader = function( game )
   this.numberOfDecodedSounds = 0;
 };
 
+GameTitle.Preloader.stateKey = "Preloader";
+
 GameTitle.Preloader.prototype.init = function()
 {
   
@@ -80,5 +82,5 @@ GameTitle.Preloader.prototype.start = function()
   }
 
   // Proceed to main menu, as usual.
-  this.state.start( "MainMenu" );
+  this.state.start( GameTitle.MainMenu.stateKey );
 };
