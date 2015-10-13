@@ -67,7 +67,7 @@ GameTitle.Preloader.prototype.start = function()
 {
   // First see if the "state" URL parameter was specified.
   var stateKey = this.game.net.getQueryString( "state" );
-  if( stateKey !== "" )
+  if( typeof stateKey === "string" && stateKey !== "" )
   {
     if( this.state.checkState( stateKey ) )
     {
