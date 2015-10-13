@@ -63,5 +63,22 @@ GameTitle.Preloader.prototype.allSoundsDecoded = function()
 
 GameTitle.Preloader.prototype.start = function()
 {
+  // First see if the "state" URL parameter was specified.
+  var stateKey = this.game.net.getQueryString( "state" );
+  if( stateKey !== "" )
+  {
+    if( this.state.checkState( stateKey ) )
+    {
+      // Just straight to this state.
+      this.state.start( stateKey );
+      return;
+    }
+    else
+    {
+      console.warn( stateKey + " is not a valid state key." );
+    }
+  }
+
+  // Proceed to main menu, as usual.
   this.state.start( "MainMenu" );
 };
