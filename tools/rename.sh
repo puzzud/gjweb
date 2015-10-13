@@ -17,45 +17,54 @@ GAME_NICE_NAME=$3
 FILE_LIST=`find $GAME_HOME -type f | grep -v ".git" | grep -v "$GAME_HOME/tools/rename.sh"`
 DIR_LIST=`find $GAME_HOME -type d | grep -v ".git" | grep -v "$GAME_HOME/tools"`
 
-echo "Attempt to replace any references to GameTitle in its name."
-for f in $FILE_LIST
-do
-  #echo $f
+function rename() {
+  REPLACEMENT_PATTERN="s/$1/$2/g"
+  #echo $REPLACEMENT_PATTERN
+  #return 0;
 
-  sed -i -- "s/GameTitle/$GAME_SAFE_NAME/g" $f
-  if [ "$?" == "0" ];
-  then
-    echo "Found at least one match in file contents:  $f"
-  fi
-done
-echo ""
+  echo "Attempt to replace any references to $1 in its name."
+  for f in $FILE_LIST
+  do
+    #echo $f
 
-echo "Attempt to rename any directories with GameTitle in its name."
-for d in $DIR_LIST
-do
-  #echo $d
+    sed -i -- "$REPLACEMENT_PATTERN" $f
+    if [ "$?" == "0" ];
+    then
+      echo "Found at least one match in file contents:  $f"
+    fi
+  done
+  echo ""
 
-  RENAMED_DIR=`echo $d | sed -e "s/GameTitle/$GAME_SAFE_NAME/g"`
-  if [ "$RENAMED_DIR" != "$d" ];
-  then
-    echo "Found at least one match in directory name:  $d"
-    mv $d $RENAMED_DIR
-  fi
-done
-echo ""
+  echo "Attempt to rename any directories with $1 in its name."
+  for d in $DIR_LIST
+  do
+    #echo $d
 
-echo "Attempt to rename any files with GameTitle in its name."
-for f in $FILE_LIST
-do
-  #echo $f
+    RENAMED_DIR=`echo $d | sed -e "$REPLACEMENT_PATTERN"`
+    if [ "$RENAMED_DIR" != "$d" ];
+    then
+      echo "Found at least one match in directory name:  $d"
+      mv "$d" "$RENAMED_DIR"
+    fi
+  done
+  echo ""
 
-  RENAMED_FILE=`echo $f | sed -e "s/GameTitle/$GAME_SAFE_NAME/g"`
-  if [ "$RENAMED_FILE" != "$f" ];
-  then
-    echo "Found at least one match in file name:  $f"
-    mv $f $RENAMED_FILE
-  fi
-done
-echo ""
+  echo "Attempt to rename any files with $1 in its name."
+  for f in $FILE_LIST
+  do
+    #echo $f
+
+    RENAMED_FILE=`echo $f | sed -e "$REPLACEMENT_PATTERN"`
+    if [ "$RENAMED_FILE" != "$f" ];
+    then
+      echo "Found at least one match in file name:  $f"
+      mv "$f" "$RENAMED_FILE"
+    fi
+  done
+  echo ""
+}
+
+rename "GameTitle" "$GAME_SAFE_NAME"
+#rename "Game Title" "$GAME_NICE_NAME"
 
 exit 0
