@@ -42,5 +42,8 @@ PhaserThree.Layer3d.prototype.update = function()
 
   this.renderer.render( this.scene, this.camera );
 
-  this.game.renderer.updateTexture( this.baseTexture );
+  if( this.game.renderer.updateTexture !== undefined )
+  {
+    this.game.renderer.updateTexture( this.baseTexture );
+  }
 };
