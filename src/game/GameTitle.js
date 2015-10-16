@@ -163,6 +163,7 @@ GameTitle.createTextButton = function( x, y, text, callback, callbackContext )
   label.tint = this.buttonTextColor;
 
   button.addChild( label );
+  button.texture.baseTexture.skipRender = false;
 
   button.events.onInputOver.add( GameTitle.textButtonOnInputOver, callbackContext );
   button.events.onInputOut.add( GameTitle.textButtonOnInputOut, callbackContext );
