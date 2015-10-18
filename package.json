@@ -1,0 +1,12 @@
+// Node Webkit application properties.
+{
+  "main": "index.html",
+  "name": "Game Title",
+
+  "window":
+  {
+    "toolbar": false,
+    "frame": true,
+    "fullscreen": false
+  }
+}

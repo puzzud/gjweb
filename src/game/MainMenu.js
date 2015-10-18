@@ -77,8 +77,16 @@ GameTitle.MainMenu.prototype.goToAboutScreen = function()
 
 GameTitle.MainMenu.prototype.exitGame = function()
 {
-  // TODO: Redirect based on native or web application.
-  window.location = GameTitle.projectWebsite;
+  if( GameTitle.window !== null )
+  {
+    // Close application window.
+    GameTitle.window.close();
+  }
+  else
+  {
+    // Redirect to project website if running in browser.
+    window.location = GameTitle.projectWebsite;
+  }
 };
 
 GameTitle.MainMenu.prototype.update = function()

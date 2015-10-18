@@ -40,7 +40,10 @@ GameTitle =
   buttonTextOverColor: 0xffff00,
   buttonStyle: { font: "32px Arial", fill: "#ffffff" },
 
-  activeButton: null
+  activeButton: null,
+
+  nodeWeb: null,
+  window: null
 };
 
 GameTitle.run = function()
@@ -55,6 +58,33 @@ GameTitle.run = function()
   this.game.state.add( GameTitle.About.stateKey, GameTitle.About );
 
   this.game.state.start( GameTitle.Boot.stateKey );
+
+  this.setupNodeWeb();
+};
+
+GameTitle.setupNodeWeb = function()
+{
+  // Set up node webkit.
+  if( typeof require !== "undefined" )
+  {
+    try
+    {
+      this.nodeWeb = require( "nw.gui" );
+    }
+    catch( exception )
+    {
+      this.nodeWeb = null;
+      this.window = null;
+      
+      console.error( "Node Webkit is not present." );
+      return;
+    }
+
+    if( this.nodeWeb !== null )
+    {
+      this.window = this.nodeWeb.Window.get();
+    }
+  }
 };
 
 GameTitle.contributorComparator = function( a, b )
