@@ -5,6 +5,8 @@
 
   "window":
   {
+    "icon": "assets/graphics/icon.png",
+
     "toolbar": false,
     "frame": true,
     "fullscreen": false
