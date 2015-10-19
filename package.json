@@ -1,10 +1,11 @@
 // Node Webkit application properties.
 {
   "main": "index.html",
-  "name": "Game Title",
+  "name": "GameTitle",
 
   "window":
   {
+    "title": "Game Title",
     "icon": "assets/graphics/icon.png",
 
     "show": false,
