@@ -83,6 +83,7 @@ GameTitle.setupNodeWeb = function()
     if( this.nodeWeb !== null )
     {
       this.window = this.nodeWeb.Window.get();
+      this.window.show();
     }
   }
 };

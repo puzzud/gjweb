@@ -7,6 +7,8 @@
   {
     "icon": "assets/graphics/icon.png",
 
+    "show": false,
+
     "toolbar": false,
     "frame": true,
     "fullscreen": false
