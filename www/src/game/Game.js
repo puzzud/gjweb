@@ -147,6 +147,8 @@ GameTitle.Game.prototype.gamepadOnDown = function( buttonIndex, buttonValue, gam
 
 GameTitle.Game.prototype.returnToMainMenu = function()
 {
+  GameTitle.stopSounds( this.soundList );
+  
   this.state.start( GameTitle.MainMenu.stateKey );
 };
 

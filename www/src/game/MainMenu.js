@@ -10,6 +10,8 @@ GameTitle.MainMenu = function( game )
   this.aboutButton = null;
   this.exitButton = null;
   this.buttonGroup = null;
+
+  this.soundList = [];
 };
 
 GameTitle.MainMenu.stateKey = "MainMenu";
@@ -68,7 +70,9 @@ GameTitle.MainMenu.prototype.setupGraphics = function()
 };
 
 GameTitle.MainMenu.prototype.startGame = function()
-{ 
+{
+  GameTitle.stopSounds( this.soundList );
+
   this.state.start( GameTitle.Game.stateKey );
 };
 

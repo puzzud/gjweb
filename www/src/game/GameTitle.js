@@ -325,3 +325,13 @@ GameTitle.setupTitleAndText = function( state )
 
   this.game.add.tween( allTextGroup ).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true );
 };
+
+GameTitle.stopSounds = function( soundList )
+{
+  var sound = null;
+  for( var i = 0; i < soundList.length; i++ )
+  {
+    sound = soundList[i];
+    sound.stop();
+  }
+};
