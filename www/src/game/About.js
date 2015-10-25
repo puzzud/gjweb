@@ -51,9 +51,9 @@ GameTitle.About.prototype.setupInput = function( textStartYPosition )
   GameTitle.activeButton = null;
   GameTitle.setActiveButton( this.exitButton );
 
-  return textStartYPosition + 1 * 48;
-
   GameTitle.setupGamepadsForMenu();
+
+  return textStartYPosition + 1 * 48;
 };
 
 GameTitle.About.prototype.setupGraphics = function( textStartYPosition )

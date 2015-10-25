@@ -239,8 +239,8 @@ GameTitle.textButtonOnInputOut = function( button, pointer )
 GameTitle.setupGamepadsForMenu = function()
 {
   this.gamepadMenuCallbackList.length = 0;
-  this.gamepadMenuCallbackList["onDown"] = this.gamepadOnDown;
-  this.gamepadMenuCallbackList["onAxis"] = this.gamepadOnAxis;
+  this.gamepadMenuCallbackList.onDown = this.gamepadOnDown;
+  this.gamepadMenuCallbackList.onAxis = this.gamepadOnAxis;
 
   this.game.input.gamepad.addCallbacks( this, this.gamepadMenuCallbackList );
 };
