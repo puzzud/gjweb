@@ -20,6 +20,12 @@ GameTitle.Boot.prototype.init = function()
   this.input.addPointer();
 
   this.stage.backgroundColor = 0x000000;
+
+  this.game.input.gamepad.start();
+  GameTitle.gamepadList.push( this.game.input.gamepad.pad1 );
+  GameTitle.gamepadList.push( this.game.input.gamepad.pad2 );
+  GameTitle.gamepadList.push( this.game.input.gamepad.pad3 );
+  GameTitle.gamepadList.push( this.game.input.gamepad.pad4 );
 };
 
 GameTitle.Boot.prototype.preload = function()

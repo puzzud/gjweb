@@ -58,6 +58,8 @@ GameTitle.MainMenu.prototype.setupInput = function()
 
   GameTitle.activeButton = null;
   GameTitle.setActiveButton( this.startButton );
+
+  GameTitle.setupGamepadsForMenu();
 };
 
 GameTitle.MainMenu.prototype.setupGraphics = function()

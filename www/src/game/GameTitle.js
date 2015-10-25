@@ -42,6 +42,10 @@ GameTitle =
 
   activeButton: null,
 
+  gamepadList: [],
+  gamepadMenuCallbackList: [],
+  lastGamepadYAxis: 0.0,
+
   nodeWeb: null,
   window: null
 };
@@ -230,6 +234,76 @@ GameTitle.textButtonOnInputOver = function( button, pointer )
 GameTitle.textButtonOnInputOut = function( button, pointer )
 {
   GameTitle.setActiveButton( null );
+};
+
+GameTitle.setupGamepadsForMenu = function()
+{
+  this.gamepadMenuCallbackList.length = 0;
+  this.gamepadMenuCallbackList["onDown"] = this.gamepadOnDown;
+  this.gamepadMenuCallbackList["onAxis"] = this.gamepadOnAxis;
+
+  this.game.input.gamepad.addCallbacks( this, this.gamepadMenuCallbackList );
+};
+
+GameTitle.gamepadOnDown = function( buttonIndex, buttonValue, gamepadIndex )
+{
+  console.log( buttonIndex, buttonValue, gamepadIndex );
+
+  var cycleDirection = 0;
+
+  switch( buttonIndex )
+  {
+    case Phaser.Gamepad.XBOX360_DPAD_UP:
+    {
+      cycleDirection = -1;
+      break;
+    }
+
+    case Phaser.Gamepad.XBOX360_DPAD_DOWN:
+    {
+      cycleDirection = 1;
+      break;
+    }
+  }
+
+  if( cycleDirection !== 0 )
+  {
+    this.cycleActiveButton( cycleDirection );
+  }
+  else
+  {
+    if( buttonIndex === Phaser.Gamepad.XBOX360_B )
+    {
+      this.activateButtonDown( this.activeButton );
+    }
+  }
+};
+
+GameTitle.gamepadOnAxis = function( gamepad, axisIndex, axisValue )
+{
+  console.log( axisIndex, axisValue );
+
+  if( axisIndex === Phaser.Gamepad.XBOX360_STICK_LEFT_Y )
+  {
+    var cycleDirection = 0;
+
+    if( axisValue < -0.1 && this.lastGamepadYAxis >= -0.1 )
+    {
+      cycleDirection = -1;
+    }
+    else
+    if( axisValue > 0.1 && this.lastGamepadYAxis <= 0.1 )
+    {
+      cycleDirection = 1;
+    }
+
+    this.lastGamepadYAxis = axisValue;
+
+    if( cycleDirection !== 0 )
+    {
+      this.cycleActiveButton( cycleDirection );
+    }
+  }
 };
 
 GameTitle.setupTitleAndText = function( state )
