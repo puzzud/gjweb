@@ -11,28 +11,27 @@
 
 		<link rel="icon" sizes="196x196" href="assets/graphics/icon.png">
 		<link href="style.css" rel="stylesheet" type="text/css" media="screen"/>
+
+		<!--Library-->
+		<!--TODO: Need to insert the cordova script nodes at build time.-->
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="cordova_plugins.js"></script>
+		<script type="text/javascript" src="src/phaser/phaser.js"></script>
+		<script type="text/javascript" src="src/three/three.js"></script>
+
+		<!--Main-->
+		<script type="text/javascript" src="src/game/JsUtils.js"></script>
+		<script type="text/javascript" src="src/game/Layer3d.js"></script>
+		<script type="text/javascript" src="src/game/GameTitle.js"></script>
+		<script type="text/javascript" src="src/game/Boot.js"></script>
+		<script type="text/javascript" src="src/game/Preloader.js"></script>
+		<script type="text/javascript" src="src/game/MainMenu.js"></script>
+		<script type="text/javascript" src="src/game/Game.js"></script>
+		<script type="text/javascript" src="src/game/GameLayer3d.js"></script>
+		<script type="text/javascript" src="src/game/About.js"></script>
 	</head>
 
 	<body>
-		<section>
-			<script type="text/javascript" src="src/phaser/phaser.js"></script>
-			<script type="text/javascript" src="src/three/three.js"></script>
-
-			<script type="text/javascript" src="src/game/JsUtils.js"></script>
-			<script type="text/javascript" src="src/game/Layer3d.js"></script>
-
-			<script type="text/javascript" src="src/game/GameTitle.js"></script>
-			<script type="text/javascript" src="src/game/Boot.js"></script>
-			<script type="text/javascript" src="src/game/Preloader.js"></script>
-			<script type="text/javascript" src="src/game/MainMenu.js"></script>
-			<script type="text/javascript" src="src/game/Game.js"></script>
-			<script type="text/javascript" src="src/game/GameLayer3d.js"></script>
-			<script type="text/javascript" src="src/game/About.js"></script>
-		</section>
-
-		<!--TODO: Need to insert the cordova.js script node at build time.-->
-		<script type="text/javascript" src="cordova.js"></script>
-
 		<script type="text/javascript">
 			window.onload = function()
 			{
