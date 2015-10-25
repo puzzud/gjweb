@@ -58,6 +58,11 @@ GameTitle.Game.prototype.setupInput = function()
 
 GameTitle.Game.prototype.setupGamepads = function()
 {
+  // First reset callbacks.
+  this.game.input.gamepad.onDownCallback = null;
+  this.game.input.gamepad.onAxisCallback = null;
+
+  // Then set callbacks.
   this.game.input.gamepad.addCallbacks( this, this.gamepadCallbackList );
 };
 
