@@ -39,12 +39,15 @@ GameTitle =
   buttonTextColor: 0xffffff,
   buttonTextOverColor: 0xffff00,
   buttonStyle: { font: "32px Arial", fill: "#ffffff" },
+  buttonActiveStyle: { font: "32px Arial", fill: "#ffffff", fontStyle: "italic" },
 
   activeButton: null,
 
   gamepadList: [],
   gamepadMenuCallbackList: [],
   lastGamepadYAxis: 0.0,
+
+  muted: false,
 
   nodeWeb: null,
   window: null
@@ -188,12 +191,17 @@ GameTitle.activateButtonDown = function( button )
   activeButton.activate.call( this.game.state.getCurrentState(), activeButton, null );
 };
 
-GameTitle.createTextButton = function( x, y, text, callback, callbackContext )
+GameTitle.createTextButton = function( x, y, text, callback, callbackContext, style )
 {
   var button = this.game.add.button( x, y, null, callback, callbackContext );
   button.anchor.setTo( 0.5, 0.5 );
 
-  var label = new Phaser.Text( this.game, 0, 0, text, this.buttonStyle );
+  if( style === undefined )
+  {
+    style = this.buttonStyle;
+  }
+  
+  var label = new Phaser.Text( this.game, 0, 0, text, style );
   label.anchor.setTo( 0.5, 0.5 );
 
   label.tint = this.buttonTextColor;
@@ -333,5 +341,17 @@ GameTitle.stopSounds = function( soundList )
   {
     sound = soundList[i];
     sound.stop();
+  }
+};
+
+GameTitle.muteSounds = function( muted, soundList )
+{
+  this.muted = muted;
+
+  var sound = null;
+  for( var i = 0; i < soundList.length; i++ )
+  {
+    sound = soundList[i];
+    sound.mute = muted;
   }
 };
