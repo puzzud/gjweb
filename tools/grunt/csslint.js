@@ -11,8 +11,8 @@ module.exports = function (grunt, tasks) {
     // The files that we want to check.
     dist: {
       src: [
-        grunt.uriWww + '*.css', // Include all CSS files in this directory.
-        grunt.uriWww + '!*.min.css' // Exclude any files ending with `.min.css`
+        grunt.uri + '*.css', // Include all CSS files in this directory.
+        grunt.uri + '!*.min.css' // Exclude any files ending with `.min.css`
       ]
     }
   };

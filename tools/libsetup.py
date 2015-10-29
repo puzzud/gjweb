@@ -33,7 +33,7 @@ for arg in sys.argv:
 # Determine project root directory based on location of this script
 # (assume script is in /tools).
 pathToScript, justScriptName = os.path.split( scriptName )
-GameHome = os.path.join( pathToScript, "../www" )
+GameHome = os.path.join( pathToScript, "." )
 
 #-------------------------------------------------------------------------------
 def setupLibrary( gameHome, libraryName, libraryFileBaseUrl, libraryFileList, librarySrcDir, replace = False ):

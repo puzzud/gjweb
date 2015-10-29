@@ -6,8 +6,7 @@ module.exports = function (grunt) {
   // URI paths for our tasks to use.
   grunt.uri = './';
   
-  grunt.uriWww = grunt.uri + 'www/';
-  grunt.uriSrc = grunt.uriWww + 'src/';
+  grunt.uriSrc = grunt.uri + 'src/';
   grunt.uriGame = grunt.uriSrc + 'game/';
   
   grunt.uriTools = grunt.uri + 'tools/';

@@ -17,8 +17,8 @@ module.exports = function (grunt, tasks) {
 
     // The files that we want to check.
     src: [
-      grunt.uriWww + '*.html', // Include all HTML files in this directory.
-      '!' + grunt.uriWww + '*.min.html' // Exclude any files ending with `.min.html`
+      grunt.uri + '*.html', // Include all HTML files in this directory.
+      '!' + grunt.uri + '*.min.html' // Exclude any files ending with `.min.html`
       ]
     }
   };
