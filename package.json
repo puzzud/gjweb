@@ -1,5 +1,5 @@
 {
-  "name": "gjweb",
+  "name": "GameTitle",
   "description": "Web based game template for game jams.",
   "dependencies": {
     "grunt": "^0.4.5",
@@ -22,5 +22,18 @@
   },
   "bugs": "https://github.com/puzzud/gjweb/issues",
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+
+  // Node Webkit application properties.
+  "main": "index.html",
+  "window": {
+    "title": "Game Title",
+    "icon": "assets/graphics/icon.png",
+
+    "show": false,
+
+    "toolbar": false,
+    "frame": true,
+    "fullscreen": false
+  }
 }
