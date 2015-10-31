@@ -2,6 +2,7 @@
   "name": "Game Title",
   "version": "0.0.0",
   "description": "Web based game template for game jams.",
+  "url": "http://github.com/puzzud/gjweb",
   "author": "Author Name <author@gametitle.com> (http://gametitle.com)",
   "contributors":
   [
