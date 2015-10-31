@@ -10,6 +10,7 @@ GameTitle.About = function( game )
   this.buttonGroup = null;
 
   this.contributorListStyle = { font: "32px Arial", fill: "#ffffff" };
+  this.contributorRowList = [];
 };
 
 GameTitle.About.stateKey = "About";
@@ -46,7 +47,7 @@ GameTitle.About.prototype.setupInput = function( textStartYPosition )
   GameTitle.setupButtonKeys( this );
 
   // Buttons.
-  this.exitButton = GameTitle.createTextButton( this.game.world.centerX, textStartYPosition + 0 * 48,
+  this.exitButton = GameTitle.createTextButton( this.game.world.centerX, textStartYPosition - ( ( 48 / 2 ) | 0 ),
                                                 "Back", this.returnToMainMenu, this );
 
   this.buttonList.length = 0;
@@ -85,29 +86,84 @@ GameTitle.About.prototype.setupAuthorText = function( textStartYPosition )
     return 0;
   }
 
+  // Create labels and gather total field height.
   var contributorList = GameTitle.projectInfo.contributors;
   contributorList.sort( GameTitle.contributorComparator );
 
-  var contributor = null;
-  var contributorEntry = "";
-  var label = null;
+  // Position the labels based on initial alignment.
+  this.contributorRowList.length = 0;
 
+  var gameHorizontalCenter = ( this.game.width / 2 ) | 0;
+  var columnOffsetFromCenter = 32;
+  var nameColumnXPosition = gameHorizontalCenter - columnOffsetFromCenter;
+  var contributionColumnXPosition = gameHorizontalCenter + columnOffsetFromCenter;
+  
+  var labelYPosition = textStartYPosition;
+  
   var numberOfContributors = contributorList.length;
+  var labelHeight = 48;
+  var contributorFieldHeightTotal = numberOfContributors * labelHeight;
+  
+  var contributor = null;
   for( var i = 0; i < numberOfContributors; i++ )
-  {  
+  {
     contributor = contributorList[i];
 
-    contributorEntry = contributor.firstName + " " + contributor.lastName +
-      " " + "(" + contributor.contribution + ")";
+    var contributorRow = this.game.add.group();
+    this.contributorRowList.push( contributorRow );
 
-    label = this.game.add.text( this.game.world.centerX, textStartYPosition,
-                                contributorEntry, this.contributorListStyle );
-    label.anchor.setTo( 0.5, 0.5 );
+    var labelName = this.game.add.text( 0, 0,
+      contributor.name, this.contributorListStyle );
 
-    label.tint = 0x8888bb;
+    var nameField = null;
+    if( contributor.url !== undefined &&
+        contributor.url !== "" )
+    {
+      var urlButton = this.game.add.button( nameColumnXPosition, labelYPosition,
+        null, this.navigateToContributorUrl, this );
 
-    textStartYPosition += 48;
+      urlButton.addChild( labelName );
+      nameField = urlButton;
+    }
+    else
+    {
+      labelName.position.setTo( nameColumnXPosition, labelYPosition );
+      nameField = labelName;
+    }
+
+    labelName.anchor.setTo( 1.0, 0.5 );
+    labelName.tint = 0x888888;
+    contributorRow.add( nameField );
+
+    var contributionField = this.game.add.text( contributionColumnXPosition, labelYPosition,
+      contributor.contribution, this.contributorListStyle );
+    contributionField.anchor.setTo( 0, 0.5 );
+    contributionField.tint = 0x888888;
+    contributorRow.add( contributionField );
+
+    labelYPosition += labelHeight;
   }
 
-  return textStartYPosition;
+  return textStartYPosition + contributorFieldHeightTotal;
+};
+
+GameTitle.About.prototype.navigateToContributorUrl = function( button )
+{
+  var buttonContributorName = button.children[0].text;
+
+  var contributorList = GameTitle.projectInfo.contributors;
+
+  var numberOfContributors = contributorList.length;
+  var contributor = null;
+  for( var i = 0; i < numberOfContributors; i++ )
+  {
+    contributor = contributorList[i];
+    if( buttonContributorName === contributor.name )
+    {
+      window.location = contributor.url;
+      return;
+    }
+  }
+
+  console.error( "Contributor name not found from button press: " + buttonContributorName );
 };
