@@ -56,33 +56,27 @@ GameTitle.Boot.prototype.processContributorList = function()
   }
 
   var contributorList = GameTitle.projectInfo.contributors;
-
-  var contributor = null;
-  var contributorName = "";
-  
-  var numberOfContributors = contributorList.length;
-  for( var i = 0; i < numberOfContributors; i++ )
-  {
-    contributor = contributorList[i];
-
-    if( contributor.firstName === undefined ||
-        contributor.lastName === undefined )
-    {
-      // Set first and last names from full name.
-      contributorName = contributor.name.split( " ", 2 );
-      contributor.firstName = contributorName[0];
-      contributor.lastName = contributorName[1];
-    }
-  }
+  contributorList.sort( this.contributorComparator );
 };
 
 GameTitle.Boot.prototype.contributorComparator = function( a, b )
 {
   // Sort contributor list by last name, first name, and then contribution.
-  var comparison = strcmp( a.lastName, b.lastName );
+  
+  // Pull first and last names from full name.
+  var aContributorName = a.name.split( " ", 2 );
+  var bContributorName = b.name.split( " ", 2 );
+  
+  var aLastName = ( aContributorName[0] === undefined ) ? "" : aContributorName[0];
+  var bLastName = ( bContributorName[0] === undefined ) ? "" : bContributorName[0];
+
+  var comparison = strcmp( aLastName, bLastName );
   if( comparison === 0 )
   {
-    comparison = strcmp( a.firstName, b.firstName );
+    var aFirstName = ( aContributorName[1] === undefined ) ? "" : aContributorName[1];
+    var bFirstName = ( bContributorName[1] === undefined ) ? "" : bContributorName[1];
+  
+    comparison = strcmp( aFirstName, bFirstName );
     if( comparison === 0 )
     {
       comparison = strcmp( a.contribution, b.contribution );

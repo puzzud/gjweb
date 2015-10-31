@@ -88,7 +88,6 @@ GameTitle.About.prototype.setupAuthorText = function( textStartYPosition )
 
   // Create labels and gather total field height.
   var contributorList = GameTitle.projectInfo.contributors;
-  contributorList.sort( GameTitle.contributorComparator );
 
   // Position the labels based on initial alignment.
   this.contributorRowList.length = 0;
