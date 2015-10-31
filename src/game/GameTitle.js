@@ -2,34 +2,8 @@
 GameTitle =
 {
   game: null,
-  
-  title: "Game Title",
-  projectWebsite: "https://github.com/puzzud/gjweb",
 
-  author: "Author",
-  contributorList:
-  [
-    {
-      firstName: "Person1",
-      lastName: "Name1",
-      contribution: "Code"
-    },
-    {
-      firstName: "Person2",
-      lastName: "Name2",
-      contribution: "Code"
-    },
-    {
-      firstName: "Person3",
-      lastName: "Name3",
-      contribution: "Art"
-    },
-    {
-      firstName: "Person4",
-      lastName: "Name4",
-      contribution: "Music"
-    }
-  ],
+  projectInfo: null,
 
   screenWidth: 960,
   screenHeight: 540,
@@ -93,22 +67,6 @@ GameTitle.setupNodeWeb = function()
       this.window.show();
     }
   }
-};
-
-GameTitle.contributorComparator = function( a, b )
-{
-  // Sort contributor list by last name, first name, and then contribution.
-  var comparison = strcmp( a.lastName, b.lastName );
-  if( comparison === 0 )
-  {
-    comparison = strcmp( a.firstName, b.firstName );
-    if( comparison === 0 )
-    {
-      comparison = strcmp( a.contribution, b.contribution );
-    }
-  }
-
-  return comparison;
 };
 
 GameTitle.setupButtonKeys = function( state )
@@ -321,7 +279,7 @@ GameTitle.setupTitleAndText = function( state )
   var titleTextY = ( state.world.height * ( 1 - 0.67 ) ) | 0;
   
   var titleText = state.add.text( titleTextX, titleTextY,
-                                  GameTitle.title, GameTitle.titleStyle );
+                                  GameTitle.projectInfo.name, GameTitle.titleStyle );
 
   titleText.anchor.setTo( 0.5 );
 

@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.website.gjweb" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.website.gametitle" version="0.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Game Title</name>
-    <description />
-    <author email="email@website.com" href="http://website.com">Group Name</author>
+    <description>Web based game template for game jams.</description>
+    <author email="author@gametitle.com" href="http://gametitle.com">Author Name</author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <access origin="*" />

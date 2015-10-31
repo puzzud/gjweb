@@ -28,8 +28,15 @@ GameTitle.About.prototype.create = function()
 {
   this.stage.backgroundColor = 0x444444; 
 
+  var contributorListLength = 0;
+  if( GameTitle.projectInfo !== null &&
+      GameTitle.projectInfo.contributors !== undefined )
+  {
+    contributorListLength = GameTitle.projectInfo.contributors.length;
+  }
+
   var textStartYPosition = this.game.world.centerY;
-  var buttonStartYPosition = textStartYPosition + ( GameTitle.contributorList.length + 1 ) * 48;
+  var buttonStartYPosition = textStartYPosition + ( contributorListLength + 1 ) * 48;
   this.setupInput( buttonStartYPosition );
   this.setupGraphics( textStartYPosition );
 };
@@ -72,11 +79,17 @@ GameTitle.About.prototype.returnToMainMenu = function()
 
 GameTitle.About.prototype.setupAuthorText = function( textStartYPosition )
 {
-  var contributorList = GameTitle.contributorList;
+  if( GameTitle.projectInfo === null ||
+      GameTitle.projectInfo.contributors === undefined )
+  {
+    return 0;
+  }
+
+  var contributorList = GameTitle.projectInfo.contributors;
   contributorList.sort( GameTitle.contributorComparator );
 
   var contributor = null;
-  var contributorName = "";
+  var contributorEntry = "";
   var label = null;
 
   var numberOfContributors = contributorList.length;
@@ -84,11 +97,11 @@ GameTitle.About.prototype.setupAuthorText = function( textStartYPosition )
   {  
     contributor = contributorList[i];
 
-    contributorName = contributor.firstName + " " + contributor.lastName +
+    contributorEntry = contributor.firstName + " " + contributor.lastName +
       " " + "(" + contributor.contribution + ")";
 
     label = this.game.add.text( this.game.world.centerX, textStartYPosition,
-                                contributorName, this.contributorListStyle );
+                                contributorEntry, this.contributorListStyle );
     label.anchor.setTo( 0.5, 0.5 );
 
     label.tint = 0x8888bb;

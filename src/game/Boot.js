@@ -30,10 +30,64 @@ GameTitle.Boot.prototype.init = function()
 
 GameTitle.Boot.prototype.preload = function()
 {
-  
+  this.game.load.json( "projectInfo", "package.json", true );
 };
 
 GameTitle.Boot.prototype.create = function()
-{ 
+{
+  GameTitle.projectInfo = this.game.cache.getJSON( "projectInfo" );
+
+  this.processSettings();
+
   this.state.start( GameTitle.Preloader.stateKey );
+};
+
+GameTitle.Boot.prototype.processSettings = function()
+{
+  this.processContributorList();
+};
+
+GameTitle.Boot.prototype.processContributorList = function()
+{
+  if( GameTitle.projectInfo === null ||
+      GameTitle.projectInfo.contributors === undefined )
+  {
+    return;
+  }
+
+  var contributorList = GameTitle.projectInfo.contributors;
+
+  var contributor = null;
+  var contributorName = "";
+  
+  var numberOfContributors = contributorList.length;
+  for( var i = 0; i < numberOfContributors; i++ )
+  {
+    contributor = contributorList[i];
+
+    if( contributor.firstName === undefined ||
+        contributor.lastName === undefined )
+    {
+      // Set first and last names from full name.
+      contributorName = contributor.name.split( " ", 2 );
+      contributor.firstName = contributorName[0];
+      contributor.lastName = contributorName[1];
+    }
+  }
+};
+
+GameTitle.Boot.prototype.contributorComparator = function( a, b )
+{
+  // Sort contributor list by last name, first name, and then contribution.
+  var comparison = strcmp( a.lastName, b.lastName );
+  if( comparison === 0 )
+  {
+    comparison = strcmp( a.firstName, b.firstName );
+    if( comparison === 0 )
+    {
+      comparison = strcmp( a.contribution, b.contribution );
+    }
+  }
+
+  return comparison;
 };
