@@ -92,9 +92,9 @@ GameTitle.MainMenu.prototype.exitGame = function()
   {
     // Redirect to project website if running in browser.
     if( GameTitle.projectInfo === null ||
-        GameTitle.projectInfo.url === "" )
+        GameTitle.projectInfo.homepage === "" )
     {
-      console.warn( "url not set in package.json." );
+      console.warn( "homepage not set in package.json." );
       return;
     }
     
