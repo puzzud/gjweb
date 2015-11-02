@@ -49,11 +49,11 @@ GameTitle.Game.prototype.setupInput = function()
   this.exitButton.position.x = this.game.width - this.exitButton.width - 16;
   this.exitButton.input.priorityID = 1;
 
-  var muted = GameTitle.muted;
-  var muteText = muted ? "Unmute" : "  Mute";
-  var muteButtonStyle = muted ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;
+  var mute = GameTitle.mute;
+  var muteText = mute ? "Unmute" : "  Mute";
+  var muteButtonStyle = mute ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;
   this.muteButton = GameTitle.createTextButton( 0, 32,
-                                                muteText, this.muteSounds, this, muteButtonStyle );
+                                                muteText, this.toggleMute, this, muteButtonStyle );
 
   this.muteButton.position.x = this.exitButton.position.x - this.muteButton.width - 64;
   this.muteButton.input.priorityID = 1;
@@ -103,8 +103,6 @@ GameTitle.Game.prototype.setupSounds = function()
 {
   this.bell = this.game.add.audio( "bell2" );
   this.soundList.push( this.bell );
-
-  GameTitle.muteSounds( GameTitle.muted, this.soundList );
 };
 
 GameTitle.Game.prototype.update = function()
@@ -159,7 +157,7 @@ GameTitle.Game.prototype.gamepadOnDown = function( buttonIndex, buttonValue, gam
 
 GameTitle.Game.prototype.returnToMainMenu = function()
 {
-  GameTitle.stopSounds( this.soundList );
+  this.game.sound.stopAll();
   
   this.state.start( GameTitle.MainMenu.stateKey );
 };
@@ -233,14 +231,14 @@ GameTitle.Game.prototype.resetCircleSprite = function( circleSprite, x, y )
   this.game.add.tween( circleSprite ).to( { alpha: 0.0 }, 500, Phaser.Easing.Sinusoidal.InOut, true );
 };
 
-GameTitle.Game.prototype.muteSounds = function()
+GameTitle.Game.prototype.toggleMute = function()
 {
-  var muted = !GameTitle.muted;
+  var mute = !GameTitle.mute;
 
-  GameTitle.muteSounds( muted, this.soundList );
+  GameTitle.setMute( mute, this.soundList );
 
-  var muteText = muted ? "Unmute" : "  Mute";
-  var muteButtonStyle = muted ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;
+  var muteText = mute ? "Unmute" : "  Mute";
+  var muteButtonStyle = mute ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;
 
   var muteButtonText = this.muteButton.children[0];
   muteButtonText.text = muteText;

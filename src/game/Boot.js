@@ -45,6 +45,8 @@ GameTitle.Boot.prototype.create = function()
 GameTitle.Boot.prototype.processSettings = function()
 {
   this.processContributorList();
+
+  GameTitle.setMute( GameTitle.mute );
 };
 
 GameTitle.Boot.prototype.processContributorList = function()

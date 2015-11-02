@@ -21,7 +21,7 @@ GameTitle =
   gamepadMenuCallbackList: [],
   lastGamepadYAxis: 0.0,
 
-  muted: false,
+  mute: false,
 
   nodeWeb: null,
   window: null
@@ -294,6 +294,12 @@ GameTitle.setupTitleAndText = function( state )
 
 GameTitle.stopSounds = function( soundList )
 {
+  if( soundList === undefined )
+  {
+    this.game.sound.stopAll();
+    return;
+  }
+
   var sound = null;
   for( var i = 0; i < soundList.length; i++ )
   {
@@ -302,14 +308,9 @@ GameTitle.stopSounds = function( soundList )
   }
 };
 
-GameTitle.muteSounds = function( muted, soundList )
+GameTitle.setMute = function( mute )
 {
-  this.muted = muted;
+  this.mute = mute;
 
-  var sound = null;
-  for( var i = 0; i < soundList.length; i++ )
-  {
-    sound = soundList[i];
-    sound.mute = muted;
-  }
+  this.game.sound.mute = mute;
 };

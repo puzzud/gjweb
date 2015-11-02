@@ -71,7 +71,7 @@ GameTitle.MainMenu.prototype.setupGraphics = function()
 
 GameTitle.MainMenu.prototype.startGame = function()
 {
-  GameTitle.stopSounds( this.soundList );
+  this.game.sound.stopAll();
 
   this.state.start( GameTitle.Game.stateKey );
 };
