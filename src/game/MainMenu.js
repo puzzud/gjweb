@@ -98,7 +98,7 @@ GameTitle.MainMenu.prototype.exitGame = function()
       return;
     }
     
-    window.location = GameTitle.projectInfo.url;
+    window.location = GameTitle.projectInfo.homepage;
   }
 };
 
