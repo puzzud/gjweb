@@ -7,25 +7,24 @@
   "contributors":
   [
     {
-      "name": "Contributor Name1",
-      "email": "contributor1@gametitle.com",
-      "url": "http://github.com/puzzud/gjweb",
+      "name": "Andrew Dieffenbach",
+      "email": "puzzud@gmail.com",
+      "url": "http://www.puzzud.com",
       "contribution": "Code"
     },
     {
-      "name": "Contributor Name2",
-      "email": "contributor2@gametitle.com",
-      "url": "http://github.com/puzzud/gjweb",
+      "name": "Tom Hrabchak",
+      "url": "http://www.tomhrabchak.com",
       "contribution": "Code"
     },
     {
-      "name": "Contributor Name3",
+      "name": "_Contributor Name3",
       "email": "contributor3@gametitle.com",
       "url": "http://github.com/puzzud/gjweb",
       "contribution": "Art"
     },
     {
-      "name": "Contributor Name4",
+      "name": "_Contributor Name4",
       "email": "contributor4@gametitle.com",
       "url": "http://github.com/puzzud/gjweb",
       "contribution": "Music"
