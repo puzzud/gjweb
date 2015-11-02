@@ -3,5 +3,5 @@
 /plugins
 /node_modules
 /www
-/cache
 /build
+/npm-debug.log

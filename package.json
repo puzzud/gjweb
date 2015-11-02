@@ -38,6 +38,7 @@
   "scripts": {
     "lint": "grunt lint",
     "cordova_build": "npm run make_www && cordova build && npm run rm_www",
+    "nwjs_build": "npm run make_www && grunt nwjs && npm run rm_www",
     "make_www": "bash ./tools/make_www.sh",
     "rm_www": "bash ./tools/make_www.sh rm"
   },
