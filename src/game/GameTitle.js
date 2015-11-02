@@ -293,7 +293,7 @@ GameTitle.setupTitleAndText = function( state )
   var titleTextY = ( state.world.height * ( 1 - 0.67 ) ) | 0;
   
   var titleText = state.add.text( titleTextX, titleTextY,
-                                  GameTitle.projectInfo.name, GameTitle.titleStyle );
+                                  GameTitle.projectInfo.window.title, GameTitle.titleStyle );
 
   titleText.anchor.setTo( 0.5 );
 
