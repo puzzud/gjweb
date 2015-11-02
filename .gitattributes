@@ -1,2 +1,22 @@
-* text eol=lf
+* text eol=lf whitespace=trailing-space,space-before-tab,-indent-with-non-tab,tab-in-indent,tabwidth=2
 
+*.md text
+*.txt text
+*.sh text
+*.bat text eol=auto
+*.xml text
+*.htm text
+*.html text
+*.css text
+*.js text
+*.py text
+
+*.bmp binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.ico binary
+
+*.wav binary
+*.ogg binary
+*.mp3 binary
