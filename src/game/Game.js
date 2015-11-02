@@ -49,7 +49,7 @@ GameTitle.Game.prototype.setupInput = function()
   this.exitButton.position.x = this.game.width - this.exitButton.width - 16;
   this.exitButton.input.priorityID = 1;
 
-  var mute = GameTitle.mute;
+  var mute = GameTitle.getMute();
   var muteText = mute ? "Unmute" : "  Mute";
   var muteButtonStyle = mute ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;
   this.muteButton = GameTitle.createTextButton( 0, 32,
@@ -233,9 +233,9 @@ GameTitle.Game.prototype.resetCircleSprite = function( circleSprite, x, y )
 
 GameTitle.Game.prototype.toggleMute = function()
 {
-  var mute = !GameTitle.mute;
+  var mute = !GameTitle.getMute();
 
-  GameTitle.setMute( mute, this.soundList );
+  GameTitle.setMute( mute );
 
   var muteText = mute ? "Unmute" : "  Mute";
   var muteButtonStyle = mute ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;

@@ -5,6 +5,18 @@ GameTitle =
 
   projectInfo: null,
 
+  settings:
+  {
+    local:
+    {
+      mute: false
+    },
+    session:
+    {
+
+    }
+  },
+
   screenWidth: 960,
   screenHeight: 540,
 
@@ -20,8 +32,6 @@ GameTitle =
   gamepadList: [],
   gamepadMenuCallbackList: [],
   lastGamepadYAxis: 0.0,
-
-  mute: false,
 
   nodeWeb: null,
   window: null
@@ -308,9 +318,52 @@ GameTitle.stopSounds = function( soundList )
   }
 };
 
+GameTitle.getMute = function()
+{
+  return this.settings.local.mute;
+};
+
 GameTitle.setMute = function( mute )
 {
-  this.mute = mute;
+  if( this.settings.local.mute !== mute )
+  {
+    this.settings.local.mute = mute;
+
+    this.storeLocalSettings();
+  }
 
   this.game.sound.mute = mute;
+};
+
+GameTitle.retrieveLocalSettings = function()
+{
+  if( typeof( Storage ) === undefined )
+  {
+    console.warn( "Local Storage not supported." );
+    return;
+  }
+
+  var settingsLocal = localStorage.getItem( "localSettings" );
+  if( settingsLocal === null )
+  {
+    // No local settings saved yet.
+    return;
+  }
+  
+  this.settings.local = JSON.parse( settingsLocal );
+
+  // Do any actions that should come out of potentially changing
+  // any local settings.
+  this.setMute( this.settings.local.mute );
+};
+
+GameTitle.storeLocalSettings = function()
+{
+  if( typeof( Storage ) === undefined )
+  {
+    console.warn( "Local Storage not supported." );
+    return;
+  }
+
+  localStorage.setItem( "localSettings", JSON.stringify( this.settings.local ) );
 };
