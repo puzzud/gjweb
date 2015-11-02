@@ -83,10 +83,10 @@ GameTitle.MainMenu.prototype.goToAboutScreen = function()
 
 GameTitle.MainMenu.prototype.exitGame = function()
 {
-  if( GameTitle.window !== null )
+  if( GameTitle.nw.window !== null )
   {
     // Close application window.
-    GameTitle.window.close();
+    GameTitle.nw.window.close();
   }
   else
   {

@@ -33,8 +33,12 @@ GameTitle =
   gamepadMenuCallbackList: [],
   lastGamepadYAxis: 0.0,
 
-  nodeWeb: null,
-  window: null
+  // NW (formerly Node Webkit) container.
+  nw:
+  {
+    gui: null,
+    window: null
+  }
 };
 
 GameTitle.run = function()
@@ -50,31 +54,31 @@ GameTitle.run = function()
 
   this.game.state.start( GameTitle.Boot.stateKey );
 
-  this.setupNodeWeb();
+  this.setupNw();
 };
 
-GameTitle.setupNodeWeb = function()
+GameTitle.setupNw = function()
 {
-  // Set up node webkit.
-  if( typeof require !== "undefined" )
+  // Set up NW.
+  if( typeof( require ) !== "undefined" )
   {
     try
     {
-      this.nodeWeb = require( "nw.gui" );
+      this.nw.gui = require( "nw.gui" );
     }
     catch( exception )
     {
-      this.nodeWeb = null;
-      this.window = null;
+      this.nw.gui = null;
+      this.nw.window = null;
       
-      console.error( "Node Webkit is not present." );
+      console.error( "NW is not present." );
       return;
     }
 
-    if( this.nodeWeb !== null )
+    if( this.nw.gui !== null )
     {
-      this.window = this.nodeWeb.Window.get();
-      this.window.show();
+      this.nw.window = this.nw.gui.Window.get();
+      this.nw.window.show();
     }
   }
 };
