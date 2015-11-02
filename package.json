@@ -40,7 +40,10 @@
   
   "scripts":
   {
-    "lint": "grunt lint"
+    "lint": "grunt lint",
+    "cordova_build": "npm run make_www && cordova build && npm run rm_www",
+    "make_www": "bash ./tools/make_www.sh",
+    "rm_www": "bash ./tools/make_www.sh rm"
   },
   "dependencies":
   {
