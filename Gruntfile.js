@@ -22,6 +22,9 @@ module.exports = function (grunt) {
   tasks = require(grunt.uriTask + 'csslint.js')(grunt, tasks);
   tasks = require(grunt.uriTask + 'htmllint.js')(grunt, tasks);
   tasks = require(grunt.uriTask + 'jshint.js')(grunt, tasks);
+  
+  // NW JS Tasks
+  tasks = require(grunt.uriTask + 'nwjs.js')(grunt, tasks);
 
   // Register Tasks
   grunt.registerTask('lint', ['csslint', 'htmllint', 'jshint']);
