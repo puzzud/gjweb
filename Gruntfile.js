@@ -26,9 +26,13 @@ module.exports = function (grunt) {
   // NW JS Tasks
   tasks = require(grunt.uriTask + 'nwjs.js')(grunt, tasks);
 
+  // Cordova Tasks
+  tasks = require(grunt.uriTask + 'processhtml.js')(grunt, tasks);
+
   // Register Tasks
   grunt.registerTask('lint', ['csslint', 'htmllint', 'jshint']);
   grunt.registerTask('default', ['lint']);
+  grunt.registerTask('insertcordova', ['processhtml:cordova']);
 
   // Initialize The Grunt Configuration
   grunt.initConfig(tasks);
