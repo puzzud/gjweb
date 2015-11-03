@@ -9,7 +9,11 @@ extend( GameTitle.GameLayer3d, PhaserThree.Layer3d );
 
 GameTitle.GameLayer3d.prototype.init = function( game )
 {
-  PhaserThree.Layer3d.prototype.init.call( this, game );
+  var result = PhaserThree.Layer3d.prototype.init.call( this, game );
+  if( !result )
+  {
+    return result;
+  }
 
   // Camera.
   this.camera.position.set( 0.5, 1.0, 4.5 );
@@ -37,4 +41,6 @@ GameTitle.GameLayer3d.prototype.init = function( game )
   
   var yRotTween = this.game.add.tween( this.cube.rotation );
   yRotTween.to( { y: newRotationY }, 250, Phaser.Easing.Linear.None, true, 300 );
+
+  return true;
 };
