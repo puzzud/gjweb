@@ -46,7 +46,11 @@ GameTitle.Game.prototype.setupInput = function()
   this.exitButton = GameTitle.createTextButton( 0, 32,
                                                 "Exit", this.returnToMainMenu, this );
 
-  this.exitButton.position.x = this.game.width - this.exitButton.width - 16;
+  // Position button based on width.
+  // NOTE: Using child label width, as parent button width member is not
+  // reliable seemingly after newly created label is added after creating button.
+  // Need to file issue with Phaser.
+  this.exitButton.position.x = this.game.width - this.exitButton.children[0].width - 16;
   this.exitButton.input.priorityID = 1;
 
   var mute = GameTitle.getMute();
@@ -55,7 +59,7 @@ GameTitle.Game.prototype.setupInput = function()
   this.muteButton = GameTitle.createTextButton( 0, 32,
                                                 muteText, this.toggleMute, this, muteButtonStyle );
 
-  this.muteButton.position.x = this.exitButton.position.x - this.muteButton.width - 64;
+  this.muteButton.position.x = this.exitButton.position.x - this.muteButton.children[0].width;
   this.muteButton.input.priorityID = 1;
 
   this.buttonGroup = this.game.add.group();
