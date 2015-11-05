@@ -24,6 +24,35 @@ module.exports = function (grunt, tasks) {
           nonull: true
         }
       ]
+    },
+
+    // Copy over android build.
+    android: {
+      files: [
+        {
+          expand: true,
+          cwd: './platforms/android/build/outputs/apk/',
+          src: [
+            'android-*.apk',
+            '!android-*unaligned.apk'
+          ],
+          dest: './build/gametitle/android/',
+          nonull: true
+        }
+      ]
+    },
+
+    // Copy over web build.
+    web: {
+      files: [
+        {
+          expand: true,
+          cwd: './platforms/browser/www/',
+          src: ['**'],
+          dest: './build/gametitle/web',
+          nonull: true
+        }
+      ]
     }
   };
 

@@ -37,9 +37,11 @@
   "bugs": "https://github.com/puzzud/gjweb/issues",
   "scripts": {
     "lint": "grunt lint",
-    "build_www": "grunt build_www"
+    "build": "grunt build",
+    "build_www": "grunt build_www",
+    "build_web": "grunt build_web",
     "build_desktop": "grunt build_desktop",
-    "build_mobile": "grunt build_cordova_www && cordova build",
+    "build_mobile": "grunt build_mobile"
   },
   "dependencies": {
     "cca": "^0.7.4",

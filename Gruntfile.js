@@ -45,8 +45,9 @@ module.exports = function (grunt) {
   grunt.registerTask('build_desktop', ['build_www', 'nwjs']);
   grunt.registerTask('insert_cordova', ['processhtml:cordova']);
   grunt.registerTask('build_cordova_www', ['build_www', 'insert_cordova']);
-  grunt.registerTask('build_mobile', ['build_cordova_www', 'cordovacli:build_android']);
-  grunt.registerTask('build_web', ['build_cordova_www', 'cordovacli:build_browser']);
+  grunt.registerTask('build_mobile', ['clean:android', 'build_cordova_www', 'cordovacli:build_android', 'copy:android']);
+  grunt.registerTask('build_web', ['clean:web', 'build_cordova_www', 'cordovacli:build_browser', 'copy:web']);
+  grunt.registerTask('build', ['lint', 'build_web', 'build_desktop', 'build_mobile']);
 
   grunt.registerTask('default', ['lint']);
 
