@@ -37,16 +37,17 @@
   "bugs": "https://github.com/puzzud/gjweb/issues",
   "scripts": {
     "lint": "grunt lint",
-    "cordova_build": "npm run make_www && grunt insertcordova && cordova build && npm run rm_www",
-    "nwjs_build": "npm run make_www && grunt nwjs && npm run rm_www",
-    "make_www": "bash ./tools/make_www.sh",
-    "rm_www": "bash ./tools/make_www.sh rm"
+    "build_mobile": "grunt build_cordova_www && cordova build",
+    "build_desktop": "grunt build_desktop",
+    "build_www": "grunt build_www"
   },
   "dependencies": {
     "cordova": "^5.3.3",
     "csslint": "^0.10.0",
     "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-csslint": "^0.2.0",
     "grunt-contrib-cssmin": "^0.10.0",
     "grunt-contrib-htmlmin": "^0.3.0",
