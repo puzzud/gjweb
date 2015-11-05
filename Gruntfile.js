@@ -35,6 +35,9 @@ module.exports = function (grunt) {
   // NW JS Tasks
   tasks = require(grunt.uriTask + 'nwjs.js')(grunt, tasks);
 
+  // Cordova Tasks
+  tasks = require(grunt.uriTask + 'cordovacli.js')(grunt, tasks);
+
   // Register Tasks
   grunt.registerTask('lint', ['csslint', 'htmllint', 'jshint']);
   grunt.registerTask('clean_www', ['clean:www']);
@@ -42,7 +45,9 @@ module.exports = function (grunt) {
   grunt.registerTask('build_desktop', ['build_www', 'nwjs']);
   grunt.registerTask('insert_cordova', ['processhtml:cordova']);
   grunt.registerTask('build_cordova_www', ['build_www', 'insert_cordova']);
-  
+  grunt.registerTask('build_mobile', ['build_cordova_www', 'cordovacli:build_android']);
+  grunt.registerTask('build_web', ['build_cordova_www', 'cordovacli:build_browser']);
+
   grunt.registerTask('default', ['lint']);
 
   // Initialize The Grunt Configuration
