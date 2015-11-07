@@ -179,7 +179,7 @@ GameTitle.createTextButton = function( x, y, text, callback, callbackContext, st
   label.tint = this.buttonTextColor;
 
   button.addChild( label );
-  //button.texture.baseTexture.skipRender = false;
+  button.texture.baseTexture.skipRender = false; // TODO: Remove when Phaser 2.4.5 releases with fix.
 
   button.events.onInputOver.add( GameTitle.textButtonOnInputOver, callbackContext );
   button.events.onInputOut.add( GameTitle.textButtonOnInputOut, callbackContext );
