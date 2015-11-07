@@ -51,6 +51,8 @@ module.exports = function (grunt) {
   grunt.registerTask('build_web', ['add_web', 'clean:web', 'build_cordova_www', 'cordovacli:build_browser', 'copy:web']);
   grunt.registerTask('build', ['lint', 'build_web', 'build_desktop', 'build_mobile']);
 
+  grunt.registerTask('setuplibs', ['copy:phaser', 'copy:three']);
+
   grunt.registerTask('default', ['lint']);
 
   // Initialize The Grunt Configuration

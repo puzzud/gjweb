@@ -36,6 +36,7 @@
   },
   "bugs": "https://github.com/puzzud/gjweb/issues",
   "scripts": {
+    "postinstall": "grunt setuplibs",
     "lint": "grunt lint",
     "build": "grunt build",
     "build_www": "grunt build_www",
@@ -60,8 +61,8 @@
     "grunt-html": "^1.4.0",
     "grunt-nw-builder": "^2.0.0",
     "grunt-processhtml": "^0.3.8",
-    "phaser": "^2.4.4",
-    "three": "^0.73.0"
+    "phaser": "latest",
+    "three": "latest"
   },
   "main": "index.html",
   "window": {

@@ -8,6 +8,36 @@ module.exports = function (grunt, tasks) {
 
   // The configuration for a specific task.
   tasks.copy = {
+
+    // Copy Phaser source files into project src.
+    phaser: {
+      files: [
+        {
+          expand: true,
+          cwd: './node_modules/phaser/build/',
+          src: [
+            'phaser*'
+          ],
+          dest: './src/phaser/',
+          nonull: true
+        }
+      ]
+    },
+
+    // Copy Three JS source files into project src.
+    three: {
+      files: [
+        {
+          expand: true,
+          cwd: './node_modules/three/',
+          src: [
+            'three*'
+          ],
+          dest: './src/three/'
+        }
+      ]
+    },
+
     // Copy critical files into the www sub-directory.
     www: {
       files: [
