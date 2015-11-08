@@ -1,56 +1,137 @@
-# gjweb
+gjweb
+===
 A web based game template for game jams.
 
-**Description**
-This project serves as way to jump start a game jam with the basic structure
-of a game (loading screen, main menu, game-play screen). The intention is to
-make it available for quick copy, modification, extension, and distribution.
-It's broken down into multiple files to also facilitate collaboration of
-multiple contributors during a game jam.
+This project can jump start a game jam by providing a shell of a game; ready to be filled with game logic and content, so less time is spent setting up a game.
 
-**Requirements**
-This project uses web based technologies:  HTML, CSS, and Javascript. It uses
-the Phaser game engine. It should also be compliant with native wrapping
-technologies such as Node-Webkit, Cordova, and Cocoon.
+It provides a basic structure with some common components:
 
-Phaser is not included in this repository. It must be added in addition to
-checking out this repository. To do so, copy the phaser runtime files to the
-source path. For example,
+- Bootloader
+- Loading Screen
+- Main Menu
+- About / Credits
+- Game-play Screen
+
+It comes with build scripts that make it possible to target:
+
+- Windows
+- Mac OS X
+- Linux
+- Android
+- iOS
+
+Copy or fork it. Modify it. Create a game.
+
+Technology
+---
+Program a game with the following:
+
+- HTML
+- CSS
+- Javascript
+- Phaser
+- ThreeJS (Optional)
+
+Target the web, desktops, and mobile platforms with:
+
+- NW.js
+- Cordova
+
+Requirements
+---
+To use all of this project's features, the following programs are required:
+
+- nodejs
+- npm (node package manager)
+- grunt-cli
+
+Installation
+---
+Checkout or [download](https://github.com/puzzud/gjweb/archive/master.zip) this project for GitHub.
+
+Install **nodejs** and **npm**.
+
+For Windows, it's possible to download it from [https://nodejs.org/en/download](https://nodejs.org/en/download).
+
+Install **grunt-cli**, via the command line:
+
 ```
-mkdir /path/to/gjweb/www/src/phaser
-cp /path/to/phaser/build/phaser.* /path/to/gjweb/www/src/phaser
+npm install -g grunt-cli
 ```
 
-Three.js is used experimentally to provide a 3D layer in which to render.
-Is not included in this repository. It must be added in addition to
-checking out this repository. To do so, copy the phaser runtime files to the
-source path. For example,
+From the same console, navigate to the **gjweb** root directory.
+
+Install its dependencies, via the command line (this can take a few minutes):
+
 ```
-mkdir /path/to/gjweb/www/src/three
-cp /path/to/three.js/build/phaser.* /path/to/gjweb/www/src/three
+npm install
 ```
 
-**Usage**
-Typically HTML game related technologies, including Phaser, require a
-special level of data file access. However, most browsers prevent this
-sort of access to files on the local file system, as a security and
-privacy precaution. Therefore, files be accessed via a remote web server.
-There are multiple ways to accomplish such. Here's a rough explanation of
-a simple approach (requires Python):
+Building
+---
+**Commands**
+
+Use the following commands to create builds:
+
 ```
-python -m SimpleHTTPServer 8081 /path/to/gjweb/www
+npm run build_web
 ```
 
-The result is that your local machine will run a light weight web server
-that hosts the game. Afterwards, navigate your web browser on the same
-machine to:
 ```
-http://localhost:8081
+npm run build_desktop
 ```
 
-Alternatively, if you are using Chrome, it is possible to turn off this
-security feature (do so at your own risk) by launching Chome with a
-special parameter:
+```
+npm run build_mobile
+```
+
+```
+npm run build
+```
+
+*npm run build* will build for all possible targets.
+
+**Location**
+
+Resulting builds will populate */path/to/gjweb/build/gametitle* with the following directories:
+
+- win64
+- osx64
+- linux64
+- android
+- ios (*Future*)
+- web
+
+Usage
+---
+**Web**
+
+To run the web version of the game (particularly during development), set up a web server to point to the root direcctory of **gjweb**.
+
+It's possible to create a basic web server with this Python command:
+
+```
+python -m SimpleHTTPServer 8081 /path/to/gjweb
+```
+
+Then, navigate a web server to:
+
+[http://localhost:8081](http://localhost:8081)
+
+It's possible to start Google Chrome with the following parameter to allow a web browser to read directly from the **gjweb** file system directory:
+
 ```
 google-chrome  --allow-file-access-from-files
 ```
+
+**Desktop**
+
+Desktop OS executables are accessible in the build directories mentioned in the **Building** section.
+
+**Android**
+
+APKs are accessible in the *android* build directory mentioned in the **Building** section.
+
+**iOS**
+
+*(Future)*
