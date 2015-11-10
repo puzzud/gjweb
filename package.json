@@ -1,5 +1,6 @@
 {
   "name": "gametitle",
+  "namespace": "GameTitle",
   "version": "0.0.0",
   "description": "Web based game template for game jams.",
   "homepage": "http://github.com/puzzud/gjweb",
@@ -37,6 +38,7 @@
   "bugs": "https://github.com/puzzud/gjweb/issues",
   "scripts": {
     "postinstall": "grunt setuplibs",
+    "rename": "grunt rename",
     "lint": "grunt lint",
     "build": "grunt build",
     "build_www": "grunt build_www",
@@ -61,6 +63,7 @@
     "grunt-html": "^1.4.0",
     "grunt-nw-builder": "^2.0.0",
     "grunt-processhtml": "^0.3.8",
+    "grunt-replace": "^0.11.0",
     "phaser": "latest",
     "three": "latest"
   },

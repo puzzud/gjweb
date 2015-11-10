@@ -16,6 +16,8 @@ module.exports = function (grunt) {
 
   // Our task object where we'll store our configuration.
   var tasks = {};
+  tasks.pkg = grunt.file.readJSON('./package.json');
+
   tasks.concat = {};
 
   // Lint Tasks
@@ -28,6 +30,9 @@ module.exports = function (grunt) {
   
   // Copy Tasks
   tasks = require(grunt.uriTask + 'copy.js')(grunt, tasks);
+
+  // Replace Tasks
+  tasks = require(grunt.uriTask + 'replace.js')(grunt, tasks);
 
   // Process HTML Tasks
   tasks = require(grunt.uriTask + 'processhtml.js')(grunt, tasks);
@@ -52,6 +57,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', ['lint', 'build_web', 'build_desktop', 'build_mobile']);
 
   grunt.registerTask('setuplibs', ['copy:phaser', 'copy:three']);
+  grunt.registerTask('rename', ['replace:rename']);
 
   grunt.registerTask('default', ['lint']);
 
