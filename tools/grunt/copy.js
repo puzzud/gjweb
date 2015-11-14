@@ -14,11 +14,11 @@ module.exports = function (grunt, tasks) {
       files: [
         {
           expand: true,
-          cwd: './node_modules/phaser/build/',
+          cwd: grunt.uriNodeModules + 'phaser/build/',
           src: [
             'phaser*'
           ],
-          dest: './src/phaser/',
+          dest: grunt.uriPhaser,
           nonull: true
         }
       ]
@@ -29,11 +29,11 @@ module.exports = function (grunt, tasks) {
       files: [
         {
           expand: true,
-          cwd: './node_modules/three/',
+          cwd: grunt.uriNodeModules + 'three/',
           src: [
             'three*'
           ],
-          dest: './src/three/'
+          dest: grunt.uriThree
         }
       ]
     },
@@ -44,13 +44,13 @@ module.exports = function (grunt, tasks) {
         {
           expand: true,
           src: [
-            './assets/**',
-            './src/**',
-            './index.html',
-            './style.css',
-            './package.json'
+            grunt.uri + 'assets/**',
+            grunt.uriSrc + '**',
+            grunt.uri + 'index.html',
+            grunt.uri + '*.css',
+            grunt.uri + 'package.json'
           ],
-          dest: './www/',
+          dest: grunt.uriWww,
           nonull: true
         }
       ]
@@ -61,12 +61,12 @@ module.exports = function (grunt, tasks) {
       files: [
         {
           expand: true,
-          cwd: './platforms/android/build/outputs/apk/',
+          cwd: grunt.uri + 'platforms/android/build/outputs/apk/',
           src: [
             'android-*.apk',
             '!android-*unaligned.apk'
           ],
-          dest: './build/gametitle/android/',
+          dest: grunt.uriBuildAndroid,
           nonull: true
         }
       ]
@@ -77,9 +77,9 @@ module.exports = function (grunt, tasks) {
       files: [
         {
           expand: true,
-          cwd: './platforms/browser/www/',
+          cwd: grunt.uri + 'platforms/browser/www/',
           src: ['**'],
-          dest: './build/gametitle/web',
+          dest: grunt.uriBuildWeb,
           nonull: true
         }
       ]

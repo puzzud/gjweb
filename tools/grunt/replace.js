@@ -34,13 +34,13 @@ module.exports = function (grunt, tasks) {
         {
           expand: true,
           src: [
-            './assets/**',
-            './src/**',
-            './index.html',
-            './style.css',
-            './config.xml'
+            grunt.uri + 'assets/**',
+            grunt.uriSrc + '**',
+            grunt.uri + 'index.html',
+            grunt.uri + '*.css',
+            grunt.uri + 'config.xml'
           ],
-          dest: './'
+          dest: grunt.uri
         }
       ]
     }

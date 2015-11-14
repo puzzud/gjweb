@@ -9,16 +9,16 @@ module.exports = function (grunt, tasks) {
   // The configuration for a specific task.
   tasks.clean = {
     // Remove www sub-directory.
-    www: ["./www"],
+    www: [grunt.uriWww],
 
     // Remove android build.
-    android: ["./build/gametitle/android"],
+    android: [grunt.uriBuildAndroid],
 
     // Remove ios build.
-    ios: ["./build/gametitle/ios"],
+    ios: [grunt.uriBuildIos],
 
     // Remove web build.
-    web: ["./build/gametitle/web"]
+    web: [grunt.uriBuildWeb]
   };
 
   return tasks;

@@ -13,9 +13,9 @@ module.exports = function (grunt, tasks) {
       version: "0.12.3", // NOTE: Need to use an old fixed version until grunt-nw-builder and nw-builder improve support.
       platforms: ['win64', 'osx64', 'linux64'], // TODO: Pull these platforms from package.json somehow?
       buildDir: grunt.uriBuild, // Where the build version of my NW.js app is saved.
-      cacheDir: grunt.uri + 'node_modules/grunt-nw-builder/cache'
+      cacheDir: grunt.uriNodeModules + 'grunt-nw-builder/cache'
     },
-    src: [grunt.uri + 'www/**/*'] // NW.js app location.
+    src: [grunt.uriWww + "**/*"] // NW.js app location.
   };
 
   return tasks;
