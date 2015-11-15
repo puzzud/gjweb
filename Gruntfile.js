@@ -8,6 +8,13 @@ module.exports = function (grunt) {
   var tasks = {};
   tasks.pkg = grunt.file.readJSON(grunt.uri + "package.json");
   
+  // Get a string of index.html contents.
+  var indexHtmlBuffer = grunt.file.read(grunt.uri + 'index.html');
+  if(indexHtmlBuffer !== null)
+  {
+    tasks.indexHtml = indexHtmlBuffer.toString();
+  }
+
   // URI Paths
   grunt.uriSrc = grunt.uri + 'src/';
   grunt.uriGame = grunt.uriSrc + 'game/';
@@ -18,6 +25,8 @@ module.exports = function (grunt) {
   grunt.uriTask = grunt.uriTools + 'grunt/';
 
   grunt.uriWww = grunt.uri + 'www/';
+  grunt.uriWwwSrc = grunt.uriWww + 'src/'
+  grunt.uriWwwGame = grunt.uriWwwSrc + 'game/'
   
   var releaseTaskList =
   [
@@ -58,6 +67,8 @@ module.exports = function (grunt) {
     "clean.js",
     "copy.js",
     "replace.js",
+    "concat.js",
+    "uglify.js",
     "processhtml.js",
     "nwjs.js",
     "cordovacli.js"
@@ -74,22 +85,23 @@ module.exports = function (grunt) {
   grunt.registerTask('clean_www', ['clean:www']);
   grunt.registerTask('build_www', ['clean_www', 'copy:www']);
   
+  grunt.registerTask('release_www', ['concat:www', 'uglify:release', 'clean:release', 'processhtml:release']);
   grunt.registerTask('build_desktop', ['build_www', 'nwjs']);
-  grunt.registerTask('release_desktop', ['build_www', 'nwjs']);
+  grunt.registerTask('release_desktop', ['build_www', 'release_www', 'nwjs']);
   
   grunt.registerTask('insert_cordova', ['processhtml:cordova']);
   grunt.registerTask('build_cordova_www', ['build_www', 'insert_cordova']);
   
   grunt.registerTask('add_android', ['cordovacli:add_android', 'cordovacli:add_plugins']);
   grunt.registerTask('build_android', ['clean:android', 'build_cordova_www', 'add_android', 'cordovacli:build_android', 'copy:debug_android']);
-  grunt.registerTask('release_android', ['clean:android', 'build_cordova_www', 'add_android', 'cordovacli:release_android', 'copy:release_android']);
+  grunt.registerTask('release_android', ['clean:android', 'build_cordova_www', 'release_www', 'add_android', 'cordovacli:release_android', 'copy:release_android']);
 
   grunt.registerTask('build_mobile', ['build_android']);
   grunt.registerTask('release_mobile', ['release_android']);
 
   grunt.registerTask('add_web', ['cordovacli:add_browser', 'cordovacli:add_plugins']);
   grunt.registerTask('build_web', ['clean:web', 'build_cordova_www', 'add_web', 'cordovacli:build_browser', 'copy:web']);
-  grunt.registerTask('release_web', ['clean:web', 'build_cordova_www', 'add_web', 'cordovacli:release_browser', 'copy:web']);
+  grunt.registerTask('release_web', ['clean:web', 'build_cordova_www', 'release_www', 'add_web', 'cordovacli:release_browser', 'copy:web']);
 
   grunt.registerTask('build', ['lint', 'build_web', 'build_desktop', 'build_mobile']);
   grunt.registerTask('release', ['lint', 'release_web', 'release_desktop', 'release_mobile']);

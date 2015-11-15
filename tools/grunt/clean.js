@@ -11,6 +11,27 @@ module.exports = function (grunt, tasks) {
     // Remove www sub-directory.
     www: [grunt.uriWww],
 
+    // Remove www sub-directory files which are not
+    // intended for debug builds.
+    debug: [
+      '!' + grunt.uriWwwSrc + 'phaser/*.js',
+      grunt.uriWwwSrc + 'phaser/*min.js',
+      grunt.uriWwwSrc + 'phaser/*.map',
+      '!' + grunt.uriWwwSrc + 'three/*.js',
+      grunt.uriWwwSrc + 'three/*min.js'
+    ],
+
+    // Remove www sub-directory files which are not
+    // intended for release builds.
+    release: [
+      grunt.uriWwwGame + '*.js',
+      '!' + grunt.uriWwwGame + '*.min.js',
+      grunt.uriWwwSrc + 'phaser/*.js',
+      '!' + grunt.uriWwwSrc + 'phaser/*min.js',
+      grunt.uriWwwSrc + 'three/*.js',
+      '!' + grunt.uriWwwSrc + 'three/*min.js'
+    ],
+
     // Remove android build.
     android: [grunt.uriBuildAndroid],
 

@@ -12,7 +12,7 @@ module.exports = function (grunt, tasks) {
     dist: {
       src: [
         grunt.uri + '*.css', // Include all CSS files in this directory.
-        grunt.uri + '!*.min.css' // Exclude any files ending with `.min.css`
+        '!' + grunt.uri + '*.min.css' // Exclude any files ending with `.min.css`
       ]
     }
   };
