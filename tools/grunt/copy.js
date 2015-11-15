@@ -57,18 +57,33 @@ module.exports = function (grunt, tasks) {
     },
 
     // Copy over android build.
-    android: {
+    debug_android: {
       files: [
         {
           expand: true,
           cwd: grunt.uri + 'platforms/android/build/outputs/apk/',
           src: [
-            'android-*.apk',
+            'android-*-debug.apk',
             '!android-*unaligned.apk'
           ],
           dest: grunt.uriBuildAndroid,
           nonull: true
-        }
+        },
+      ]
+    },
+
+    release_android: {
+      files: [
+        {
+          expand: true,
+          cwd: grunt.uri + 'platforms/android/build/outputs/apk/',
+          src: [
+            'android-*-release-unsigned.apk',
+            '!android-*unaligned.apk'
+          ],
+          dest: grunt.uriBuildAndroid,
+          nonull: true
+        },
       ]
     },
 

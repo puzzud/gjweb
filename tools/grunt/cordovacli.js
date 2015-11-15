@@ -51,6 +51,8 @@ module.exports = function (grunt, tasks) {
         ]
       }
     },
+
+    // Debug Build.
     build_android: {
       options: {
         command: 'build',
@@ -66,6 +68,29 @@ module.exports = function (grunt, tasks) {
     build_browser: {
       options: {
         command: 'build',
+        platforms: ['browser']
+      }
+    },
+
+    // Release Build.
+    release_android: {
+      options: {
+        command: 'build',
+        args:['--release'],
+        platforms: ['android']
+      }
+    },
+    release_ios: {
+      options: {
+        command: 'build',
+        args:['--release'],
+        platforms: ['ios']
+      }
+    },
+    release_browser: {
+      options: {
+        command: 'build',
+        args:['--release'],
         platforms: ['browser']
       }
     }

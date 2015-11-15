@@ -18,7 +18,7 @@ It comes with build scripts that make it possible to target:
 - Mac OS X
 - Linux
 - Android
-- iOS
+- iOS (*Future*)
 
 Copy or fork it. Modify it. Create a game.
 
@@ -71,7 +71,7 @@ Building
 ---
 **Commands**
 
-Use the following commands to create builds:
+Use the following commands to create debug builds:
 
 ```
 npm run build_web
@@ -79,6 +79,10 @@ npm run build_web
 
 ```
 npm run build_desktop
+```
+
+```
+npm run build_android
 ```
 
 ```
@@ -91,10 +95,36 @@ npm run build
 
 *npm run build* will build for all possible targets.
 
+Use the following commands to create release builds:
+
+```
+npm run release_web
+```
+
+```
+npm run release_desktop
+```
+
+```
+npm run release_android
+```
+
+```
+npm run release_mobile
+```
+
+```
+npm run release
+```
+
+*npm run release* will build release builds for all possible targets.
+
 **Location**
 
-Resulting builds will populate */path/to/gjweb/build/gametitle* with the following directories:
+Resulting debug builds will populate */path/to/gjweb/build/debug/gametitle*.
+Resulting release builds will populate */path/to/gjweb/build/debug/gametitle-<version>*.
 
+The build directories will be contain the follow target subdirectories.
 - win64
 - osx64
 - linux64

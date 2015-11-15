@@ -44,7 +44,13 @@
     "build_www": "grunt build_www",
     "build_web": "grunt build_web",
     "build_desktop": "grunt build_desktop",
-    "build_mobile": "grunt build_mobile"
+    "build_android": "grunt build_android",
+    "build_mobile": "grunt build_mobile",
+    "release": "grunt release",
+    "release_web": "grunt release_web",
+    "release_desktop": "grunt release_desktop",
+    "release_android": "grunt release_android",
+    "release_mobile": "grunt release_mobile"
   },
   "dependencies": {
     "cca": "^0.7.4",
