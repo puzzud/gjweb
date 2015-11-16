@@ -42,13 +42,15 @@ module.exports = function (grunt) {
   if(releaseTaskList.indexOf(grunt.cli.tasks[0]) > -1 )
   {
     grunt.uriBuild = grunt.uri + 'build/release/';
-    grunt.uriBuildGame = grunt.uriBuild + tasks.pkg.name + '-' + tasks.pkg.version + '/';
+    grunt.buildName = tasks.pkg.name + '-' + tasks.pkg.version;
   }
   else
   {
     grunt.uriBuild = grunt.uri + 'build/debug/';
-    grunt.uriBuildGame = grunt.uriBuild + tasks.pkg.name + '/';
+    grunt.buildName = tasks.pkg.name;
   }
+  
+  grunt.uriBuildGame = grunt.uriBuild + grunt.buildName + '/';
 
   grunt.uriBuildWeb = grunt.uriBuildGame + "web/";
   grunt.uriBuildAndroid = grunt.uriBuildGame + "android/";
