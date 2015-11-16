@@ -71,7 +71,8 @@
     "grunt-processhtml": "^0.3.8",
     "grunt-replace": "^0.11.0",
     "phaser": "latest",
-    "three": "latest"
+    "three": "latest",
+    "time-grunt": "^1.2.2"
   },
   "main": "index.html",
   "window": {
