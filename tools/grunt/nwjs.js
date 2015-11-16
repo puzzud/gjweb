@@ -14,7 +14,9 @@ module.exports = function (grunt, tasks) {
       platforms: ['win64', 'osx64', 'linux64'], // TODO: Pull these platforms from package.json somehow?
       buildType: function(){return grunt.buildName},
       buildDir: grunt.uriBuild, // Where the build version of my NW.js app is saved.
-      cacheDir: grunt.uriNodeModules + 'grunt-nw-builder/cache'
+      cacheDir: grunt.uriNodeModules + 'grunt-nw-builder/cache',
+      winIco: "./assets/graphics/icons/win/icon.ico",
+      macIcns: "./assets/graphics/icons/osx/icon.icns"
     },
     src: [grunt.uriWww + "**/*"] // NW.js app location.
   };

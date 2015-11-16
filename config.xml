@@ -15,15 +15,15 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
-    <icon density="ldpi" platform="android" src="www/assets/graphics/icon.png" />
-    <icon density="mdpi" platform="android" src="www/assets/graphics/icon.png" />
-    <icon density="hdpi" platform="android" src="www/assets/graphics/icon.png" />
-    <icon density="xdpi" platform="android" src="www/assets/graphics/icon.png" />
-    <splash density="lhdpi" platform="android" src="www/assets/graphics/icon.png" />
-    <splash density="mhdpi" platform="android" src="www/assets/graphics/icon.png" />
-    <splash density="hhdpi" platform="android" src="www/assets/graphics/icon.png" />
-    <splash density="xdpi" platform="android" src="www/assets/graphics/icon.png" />
-    <splash density="xhdpi" platform="android" src="www/assets/graphics/icon.png" />
+    <icon density="ldpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <icon density="mdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <icon density="hdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <icon density="xdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="lhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="mhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="hhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="xdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="xhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />

@@ -76,7 +76,7 @@
   "main": "index.html",
   "window": {
     "title": "Game Title",
-    "icon": "assets/graphics/icon.png",
+    "icon": "assets/graphics/icons/general/icon196x196.png",
     "show": false,
     "toolbar": false,
     "frame": true,
