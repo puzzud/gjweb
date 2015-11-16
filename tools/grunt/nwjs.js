@@ -16,7 +16,8 @@ module.exports = function (grunt, tasks) {
       buildDir: grunt.uriBuild, // Where the build version of my NW.js app is saved.
       cacheDir: grunt.uriNodeModules + 'grunt-nw-builder/cache',
       winIco: "./assets/graphics/icons/win/icon.ico",
-      macIcns: "./assets/graphics/icons/osx/icon.icns"
+      macIcns: "./assets/graphics/icons/osx/icon.icns",
+      macZip: true
     },
     src: [grunt.uriWww + "**/*"] // NW.js app location.
   };
