@@ -29,6 +29,8 @@ GameTitle =
 
   activeButton: null,
 
+  backButtonCallback: null,
+
   gamepadList: [],
   gamepadMenuCallbackList: [],
   lastGamepadYAxis: 0.0,
@@ -54,7 +56,14 @@ GameTitle.run = function()
 
   this.game.state.start( GameTitle.Boot.stateKey );
 
+  this.setupPlatform();
+};
+
+GameTitle.setupPlatform = function()
+{
+  // TODO: Abstract differences between using NW JS and Cordova.
   this.setupNw();
+  this.setupCordova();
 };
 
 GameTitle.setupNw = function()
@@ -80,6 +89,55 @@ GameTitle.setupNw = function()
       this.nw.window = this.nw.gui.Window.get();
       this.nw.window.show();
     }
+  }
+};
+
+GameTitle.setupCordova = function()
+{
+  if( window.cordova !== undefined )
+  {
+    document.addEventListener( "deviceready", this.onDeviceReady.bind( this ), false );
+  }
+};
+
+GameTitle.onDeviceReady = function()
+{
+  document.addEventListener( "backbutton", this.onBackButton.bind( this ), false );
+};
+
+GameTitle.onBackButton = function( event )
+{
+  if( this.backButtonCallback !== null )
+  {
+    event.preventDefault();
+    this.backButtonCallback.call( this.game.state.getCurrentState() );
+  }
+};
+
+GameTitle.quit = function()
+{
+  if( GameTitle.nw.window !== null )
+  {
+    // Close application window.
+    GameTitle.nw.window.close();
+  }
+  else
+  if( window.cordova !== undefined && cordova.platformId !== "browser" )
+  {
+    // Close application.
+    navigator.app.exitApp();
+  }
+  else
+  {
+    // Redirect to project website if running in browser.
+    if( GameTitle.projectInfo === null ||
+        GameTitle.projectInfo.homepage === "" )
+    {
+      console.warn( "homepage not set in package.json." );
+      return;
+    }
+    
+    window.location = GameTitle.projectInfo.homepage;
   }
 };
 

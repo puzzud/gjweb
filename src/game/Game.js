@@ -38,7 +38,9 @@ GameTitle.Game.prototype.create = function()
 GameTitle.Game.prototype.setupInput = function()
 {
   this.escapeKey = this.input.keyboard.addKey( Phaser.Keyboard.ESC );
-  this.escapeKey.onDown.add( this.escapeButtonDown, this );
+  this.escapeKey.onDown.add( this.escapeKeyDown, this );
+
+  GameTitle.backButtonCallback = this.escapeKeyDown;
 
   // Buttons.
   GameTitle.activeButton = null;
@@ -114,7 +116,7 @@ GameTitle.Game.prototype.update = function()
   this.gamepadUpdate();
 };
 
-GameTitle.Game.prototype.escapeButtonDown = function( button )
+GameTitle.Game.prototype.escapeKeyDown = function( button )
 {
   GameTitle.setActiveButton( this.exitButton );
 

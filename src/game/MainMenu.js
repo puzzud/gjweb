@@ -4,6 +4,7 @@ GameTitle.MainMenu = function( game )
   this.cursorKeys = null;
   this.spaceBar = null;
   this.enterKey = null;
+  this.escapeKey = null;
 
   this.buttonList = [];
   this.startButton = null;
@@ -37,6 +38,11 @@ GameTitle.MainMenu.prototype.create = function()
 GameTitle.MainMenu.prototype.setupInput = function()
 {
   GameTitle.setupButtonKeys( this );
+
+  this.escapeKey = this.input.keyboard.addKey( Phaser.Keyboard.ESC );
+  this.escapeKey.onDown.add( this.escapeKeyDown, this );
+
+  GameTitle.backButtonCallback = this.escapeKeyDown;
 
   // Buttons.
   this.startButton = GameTitle.createTextButton( this.game.world.centerX, this.game.world.centerY + 48 * 0,
@@ -81,25 +87,16 @@ GameTitle.MainMenu.prototype.goToAboutScreen = function()
   this.state.start( GameTitle.About.stateKey );
 };
 
+GameTitle.MainMenu.prototype.escapeKeyDown = function()
+{
+  GameTitle.setActiveButton( this.exitButton );
+
+  this.exitGame();
+};
+
 GameTitle.MainMenu.prototype.exitGame = function()
 {
-  if( GameTitle.nw.window !== null )
-  {
-    // Close application window.
-    GameTitle.nw.window.close();
-  }
-  else
-  {
-    // Redirect to project website if running in browser.
-    if( GameTitle.projectInfo === null ||
-        GameTitle.projectInfo.homepage === "" )
-    {
-      console.warn( "homepage not set in package.json." );
-      return;
-    }
-    
-    window.location = GameTitle.projectInfo.homepage;
-  }
+  GameTitle.quit();
 };
 
 GameTitle.MainMenu.prototype.update = function()

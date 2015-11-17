@@ -4,6 +4,7 @@ GameTitle.About = function( game )
   this.cursorKeys = null;
   this.spaceBar = null;
   this.enterKey = null;
+  this.escapeKey = null;
 
   this.buttonList = [];
   this.exitButton = null;
@@ -50,6 +51,11 @@ GameTitle.About.prototype.setupInput = function( textStartYPosition )
 {
   GameTitle.setupButtonKeys( this );
 
+  this.escapeKey = this.input.keyboard.addKey( Phaser.Keyboard.ESC );
+  this.escapeKey.onDown.add( this.escapeKeyDown, this );
+
+  GameTitle.backButtonCallback = this.escapeKeyDown;
+
   // Buttons.
   this.exitButton = GameTitle.createTextButton( this.game.world.centerX, textStartYPosition - ( ( 48 / 2 ) | 0 ),
                                                 "Back", this.returnToMainMenu, this );
@@ -75,6 +81,13 @@ GameTitle.About.prototype.setupGraphics = function( textStartYPosition )
   GameTitle.setupTitleAndText( this );
 
   return textStartYPosition;
+};
+
+GameTitle.About.prototype.escapeKeyDown = function()
+{
+  GameTitle.setActiveButton( this.exitButton );
+
+  this.returnToMainMenu();
 };
 
 GameTitle.About.prototype.returnToMainMenu = function()
