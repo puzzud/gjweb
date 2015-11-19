@@ -56,7 +56,7 @@ GameTitle.MainMenu.prototype.setupInput = function()
                                                  "About", this.goToAboutScreen, this );
 
   this.exitButton  = GameTitle.createTextButton( this.game.world.centerX, this.game.world.centerY + 48 * 2,
-                                                 "Quit", this.toggleModal, this );
+                                                 "Quit", this.escapeKeyDown, this );
 
   this.buttonList.length = 0;
   this.buttonList.push( this.startButton );

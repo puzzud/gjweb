@@ -54,7 +54,7 @@ GameTitle.Game.prototype.setupInput = function()
   GameTitle.activeButton = null;
 
   this.exitButton = GameTitle.createTextButton( 0, 32,
-                                                "Exit", this.toggleModal, this );
+                                                "Exit", this.escapeKeyDown, this );
 
   // Position button based on width.
   // NOTE: Using child label width, as parent button width member is not
