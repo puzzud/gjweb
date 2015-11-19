@@ -12,6 +12,10 @@ GameTitle.MainMenu = function( game )
   this.exitButton = null;
   this.buttonGroup = null;
 
+  this.modalYesButton = null;
+  this.modalNoButton = null;
+  this.modalGroup = null;
+
   this.soundList = [];
 };
 
@@ -52,7 +56,7 @@ GameTitle.MainMenu.prototype.setupInput = function()
                                                  "About", this.goToAboutScreen, this );
 
   this.exitButton  = GameTitle.createTextButton( this.game.world.centerX, this.game.world.centerY + 48 * 2,
-                                                 "Quit", this.exitGame, this );
+                                                 "Quit", this.toggleModal, this );
 
   this.buttonList.length = 0;
   this.buttonList.push( this.startButton );
@@ -67,12 +71,47 @@ GameTitle.MainMenu.prototype.setupInput = function()
   GameTitle.activeButton = null;
   GameTitle.setActiveButton( this.startButton );
 
+  // Modal dialog buttons.
+  this.modalYesButton = GameTitle.createTextButton( 0, 0,
+                                                    "Yes", this.exitGame, this );
+  this.modalYesButton.position.setTo( this.game.world.centerX, this.game.world.centerY + 48 * 1 );
+  this.modalYesButton.input.priorityID = 3;
+
+  this.modalNoButton = GameTitle.createTextButton( 0, 0,
+                                                   "No", this.toggleModal, this );
+  this.modalNoButton.position.setTo( this.game.world.centerX, this.game.world.centerY + 48 * 2 );
+  this.modalNoButton.input.priorityID = 3;
+
   GameTitle.setupGamepadsForMenu();
 };
 
 GameTitle.MainMenu.prototype.setupGraphics = function()
 {
   GameTitle.setupTitleAndText( this );
+
+  // Set up modal background.
+  var bmd = this.game.add.bitmapData( this.game.width, this.game.height );
+  bmd.ctx.fillStyle = "rgba(0,0,0,0.5)";
+  bmd.ctx.fillRect( 0, 0, this.game.width, 48 * 3 );
+  bmd.ctx.fillRect( 0, 48 * 9, this.game.width, 48 * 3 );
+  bmd.ctx.fillStyle = "rgba(0,0,0,0.95)";
+  bmd.ctx.fillRect( 0, 48 * 3, this.game.width, 48 * 6 );
+  var modalBackground = this.game.add.sprite( 0, 0, bmd );
+  modalBackground.fixedToCamera = true;
+  modalBackground.inputEnabled = true;
+  modalBackground.input.priorityID = 2;
+
+  var modalPromptText = "Are you sure you want to quit?";
+  var modalPrompt = this.game.add.text( 0, 0, modalPromptText, GameTitle.buttonStyle );
+  modalPrompt.position.setTo( this.game.world.centerX, this.game.world.centerY - 48 * 1 );
+  modalPrompt.anchor.setTo( 0.5, 0.5 );
+
+  this.modalGroup = this.game.add.group();
+  this.modalGroup.add( modalBackground );
+  this.modalGroup.add( modalPrompt );
+  this.modalGroup.add( this.modalYesButton );
+  this.modalGroup.add( this.modalNoButton );
+  this.modalGroup.visible = false;
 };
 
 GameTitle.MainMenu.prototype.startGame = function()
@@ -87,11 +126,32 @@ GameTitle.MainMenu.prototype.goToAboutScreen = function()
   this.state.start( GameTitle.About.stateKey );
 };
 
-GameTitle.MainMenu.prototype.escapeKeyDown = function()
+GameTitle.MainMenu.prototype.escapeKeyDown = function( button )
 {
-  GameTitle.setActiveButton( this.exitButton );
+  GameTitle.setActiveButton( this.modalNoButton );
 
-  this.exitGame();
+  this.toggleModal();
+};
+
+GameTitle.MainMenu.prototype.toggleModal = function()
+{
+  this.modalGroup.visible = !this.modalGroup.visible;
+
+  this.buttonList.length = 0;
+
+  if( this.modalGroup.visible )
+  {
+    this.buttonList.push( this.modalYesButton );
+    this.buttonList.push( this.modalNoButton );
+  }
+  else
+  {
+    this.buttonList.push( this.startButton );
+    this.buttonList.push( this.aboutButton );
+    this.buttonList.push( this.exitButton );
+
+    GameTitle.setActiveButton( this.exitButton );
+  }
 };
 
 GameTitle.MainMenu.prototype.exitGame = function()

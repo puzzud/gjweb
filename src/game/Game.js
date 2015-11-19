@@ -1,10 +1,18 @@
 /** @constructor */
 GameTitle.Game = function( game )
 {
+  this.cursorKeys = null;
+  this.spaceBar = null;
+  this.enterKey = null;
   this.escapeKey = null;
 
+  this.buttonList = [];
   this.exitButton = null;
   this.buttonGroup = null;
+
+  this.modalYesButton = null;
+  this.modalNoButton = null;
+  this.modalGroup = null;
 
   this.gamepadList = GameTitle.gamepadList;
   this.gamepadCallbackList =
@@ -46,7 +54,7 @@ GameTitle.Game.prototype.setupInput = function()
   GameTitle.activeButton = null;
 
   this.exitButton = GameTitle.createTextButton( 0, 32,
-                                                "Exit", this.returnToMainMenu, this );
+                                                "Exit", this.toggleModal, this );
 
   // Position button based on width.
   // NOTE: Using child label width, as parent button width member is not
@@ -67,6 +75,17 @@ GameTitle.Game.prototype.setupInput = function()
   this.buttonGroup = this.game.add.group();
   this.buttonGroup.add( this.exitButton );
   this.buttonGroup.add( this.muteButton );
+
+  // Modal dialog buttons.
+  this.modalYesButton = GameTitle.createTextButton( 0, 0,
+                                                    "Yes", this.returnToMainMenu, this );
+  this.modalYesButton.position.setTo( this.game.world.centerX, this.game.world.centerY + 48 * 1 );
+  this.modalYesButton.input.priorityID = 3;
+
+  this.modalNoButton = GameTitle.createTextButton( 0, 0,
+                                                   "No", this.toggleModal, this );
+  this.modalNoButton.position.setTo( this.game.world.centerX, this.game.world.centerY + 48 * 2 );
+  this.modalNoButton.input.priorityID = 3;
 
   // Gamepads.
   this.setupGamepads();
@@ -103,6 +122,30 @@ GameTitle.Game.prototype.setupGraphics = function()
   background.events.onInputDown.add( this.pointerDown, this );
 
   this.game.world.sendToBack( background );
+
+  // Set up modal background.
+  var bmd = this.game.add.bitmapData( this.game.width, this.game.height );
+  bmd.ctx.fillStyle = "rgba(0,0,0,0.5)";
+  bmd.ctx.fillRect( 0, 0, this.game.width, 48 * 3 );
+  bmd.ctx.fillRect( 0, 48 * 9, this.game.width, 48 * 3 );
+  bmd.ctx.fillStyle = "rgba(0,0,0,0.95)";
+  bmd.ctx.fillRect( 0, 48 * 3, this.game.width, 48 * 6 );
+  var modalBackground = this.game.add.sprite( 0, 0, bmd );
+  modalBackground.fixedToCamera = true;
+  modalBackground.inputEnabled = true;
+  modalBackground.input.priorityID = 2;
+
+  var modalPromptText = "Are you sure you want to exit?";
+  var modalPrompt = this.game.add.text( 0, 0, modalPromptText, GameTitle.buttonStyle );
+  modalPrompt.position.setTo( this.game.world.centerX, this.game.world.centerY - 48 * 1 );
+  modalPrompt.anchor.setTo( 0.5, 0.5 );
+
+  this.modalGroup = this.game.add.group();
+  this.modalGroup.add( modalBackground );
+  this.modalGroup.add( modalPrompt );
+  this.modalGroup.add( this.modalYesButton );
+  this.modalGroup.add( this.modalNoButton );
+  this.modalGroup.visible = false;
 };
 
 GameTitle.Game.prototype.setupSounds = function()
@@ -118,9 +161,9 @@ GameTitle.Game.prototype.update = function()
 
 GameTitle.Game.prototype.escapeKeyDown = function( button )
 {
-  GameTitle.setActiveButton( this.exitButton );
+  GameTitle.setActiveButton( this.modalNoButton );
 
-  this.returnToMainMenu();
+  this.toggleModal();
 };
 
 GameTitle.Game.prototype.pointerDown = function( sprite, pointer )
@@ -159,6 +202,25 @@ GameTitle.Game.prototype.gamepadUpdate = function()
 GameTitle.Game.prototype.gamepadOnDown = function( buttonIndex, buttonValue, gamepadIndex )
 {
   this.makeImpact( ( this.game.width / 2 ) | 0, ( this.game.height / 2 ) | 0 );
+};
+
+GameTitle.Game.prototype.toggleModal = function()
+{
+  this.modalGroup.visible = !this.modalGroup.visible;
+
+  this.buttonList.length = 0;
+
+  if( this.modalGroup.visible )
+  {
+    GameTitle.setupButtonKeys( this );
+
+    this.buttonList.push( this.modalYesButton );
+    this.buttonList.push( this.modalNoButton );
+  }
+  else
+  {
+    GameTitle.clearButtonKeys( this );
+  }
 };
 
 GameTitle.Game.prototype.returnToMainMenu = function()

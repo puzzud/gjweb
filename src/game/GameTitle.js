@@ -153,6 +153,18 @@ GameTitle.setupButtonKeys = function( state )
   state.enterKey.onDown.add( GameTitle.activateButtonDown, state );
 };
 
+GameTitle.clearButtonKeys = function( state )
+{
+  state.cursorKeys.up.onDown.removeAll();
+  state.cursorKeys.down.onDown.removeAll();
+  state.cursorKeys = null;
+  
+  state.spaceBar.onDown.removeAll();
+  state.spaceBar = null;
+  state.enterKey.onDown.removeAll();
+  state.enterKey = null;
+};
+
 GameTitle.cycleActiveButton = function( direction )
 {
   var state = this.game.state.getCurrentState();
