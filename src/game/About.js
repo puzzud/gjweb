@@ -10,7 +10,7 @@ GameTitle.About = function( game )
   this.exitButton = null;
   this.buttonGroup = null;
 
-  this.contributorListStyle = { font: "32px Arial", fill: "#ffffff" };
+  this.contributorListStyle = { font: "32px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 4 };
   this.contributorRowList = [];
 
   this.creditsYPosition = 0;

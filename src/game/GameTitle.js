@@ -20,12 +20,12 @@ GameTitle =
   screenWidth: 960,
   screenHeight: 540,
 
-  titleStyle: { font: "72px Arial", fill: "#ffffff" },
+  titleStyle: { font: "72px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 6 },
 
   buttonTextColor: 0xffffff,
   buttonTextOverColor: 0xffff00,
-  buttonStyle: { font: "32px Arial", fill: "#ffffff" },
-  buttonActiveStyle: { font: "32px Arial", fill: "#ffffff", fontStyle: "italic" },
+  buttonStyle: { font: "32px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 4 },
+  buttonActiveStyle: { font: "32px Arial", fill: "#ffffff", fontStyle: "italic", stroke: "#000000", strokeThickness: 4 },
 
   activeButton: null,
 
