@@ -38,7 +38,7 @@
     "bugs": "https://github.com/puzzud/gjweb/issues",
     "scripts": {
         "postinstall": "grunt setuplibs",
-        "rename": "grunt rename",
+        "rename": "grunt rename_game",
         "lint": "grunt lint",
         "build": "grunt build",
         "build_www": "grunt build_www",
@@ -67,6 +67,7 @@
         "grunt-contrib-cssmin": "latest",
         "grunt-contrib-htmlmin": "latest",
         "grunt-contrib-jshint": "latest",
+        "grunt-contrib-rename": "latest",
         "grunt-contrib-uglify": "latest",
         "grunt-cordovacli": "latest",
         "grunt-html": "latest",

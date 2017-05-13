@@ -70,6 +70,7 @@ module.exports = function (grunt) {
     "clean.js",
     "copy.js",
     "replace.js",
+    "rename.js",
     "concat.js",
     "uglify.js",
     "processhtml.js",
@@ -112,7 +113,7 @@ module.exports = function (grunt) {
   grunt.registerTask('release', ['lint', 'release_web', 'release_desktop', 'release_mobile']);
 
   grunt.registerTask('setuplibs', ['copy:phaser']);
-  grunt.registerTask('rename', ['replace:rename']);
+  grunt.registerTask('rename_game', ['replace:rename', 'rename:module']);
 
   grunt.registerTask('default', ['lint']);
 
