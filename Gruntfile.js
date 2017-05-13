@@ -21,7 +21,6 @@ module.exports = function (grunt) {
   grunt.uriSrc = grunt.uri + 'src/';
   grunt.uriGame = grunt.uriSrc + 'game/';
   grunt.uriPhaser = grunt.uriSrc + 'phaser/';
-  grunt.uriThree = grunt.uriSrc + 'three/';
   
   grunt.uriTools = grunt.uri + 'tools/';
   grunt.uriTask = grunt.uriTools + 'grunt/';
@@ -112,7 +111,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', ['lint', 'build_web', 'build_desktop', 'build_mobile']);
   grunt.registerTask('release', ['lint', 'release_web', 'release_desktop', 'release_mobile']);
 
-  grunt.registerTask('setuplibs', ['copy:phaser', 'copy:three']);
+  grunt.registerTask('setuplibs', ['copy:phaser']);
   grunt.registerTask('rename', ['replace:rename']);
 
   grunt.registerTask('default', ['lint']);
