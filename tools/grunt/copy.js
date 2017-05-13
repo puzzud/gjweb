@@ -24,20 +24,6 @@ module.exports = function (grunt, tasks) {
       ]
     },
 
-    // Copy Three JS source files into project src.
-    three: {
-      files: [
-        {
-          expand: true,
-          cwd: grunt.uriNodeModules + 'three/',
-          src: [
-            'three*'
-          ],
-          dest: grunt.uriThree
-        }
-      ]
-    },
-
     // Copy critical files into the www sub-directory.
     www: {
       files: [

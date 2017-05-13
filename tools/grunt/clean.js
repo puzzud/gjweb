@@ -16,9 +16,7 @@ module.exports = function (grunt, tasks) {
     debug: [
       '!' + grunt.uriWwwSrc + 'phaser/*.js',
       grunt.uriWwwSrc + 'phaser/*min.js',
-      grunt.uriWwwSrc + 'phaser/*.map',
-      '!' + grunt.uriWwwSrc + 'three/*.js',
-      grunt.uriWwwSrc + 'three/*min.js'
+      grunt.uriWwwSrc + 'phaser/*.map'
     ],
 
     // Remove www sub-directory files which are not
@@ -27,9 +25,7 @@ module.exports = function (grunt, tasks) {
       grunt.uriWwwGame + '*.js',
       '!' + grunt.uriWwwGame + '*.min.js',
       grunt.uriWwwSrc + 'phaser/*.js',
-      '!' + grunt.uriWwwSrc + 'phaser/*min.js',
-      grunt.uriWwwSrc + 'three/*.js',
-      '!' + grunt.uriWwwSrc + 'three/*min.js'
+      '!' + grunt.uriWwwSrc + 'phaser/*min.js'
     ],
 
     // Remove android build.

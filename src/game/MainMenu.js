@@ -10,7 +10,7 @@ GameTitle.MainMenu.stateKey = "MainMenu";
 
 GameTitle.MainMenu.prototype.init = function()
 {
-  this.layer3d = new GameTitle.GameLayer3d(this.game);
+  
 };
 
 GameTitle.MainMenu.prototype.preload = function()
@@ -68,5 +68,5 @@ GameTitle.MainMenu.prototype.quitGame = function()
 
 GameTitle.MainMenu.prototype.update = function()
 {
-  this.layer3d.update();
+  
 };
