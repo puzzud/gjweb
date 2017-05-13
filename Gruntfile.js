@@ -102,6 +102,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build_android', ['clean:android', 'build_cordova_www', 'debug_www', 'add_android', 'cordovacli:build_android', 'copy:debug_android']);
   grunt.registerTask('release_android', ['clean:android', 'build_cordova_www', 'release_www', 'add_android', 'cordovacli:release_android', 'copy:release_android']);
 
+  grunt.registerTask('add_ios', ['cordovacli:add_ios', 'cordovacli:add_plugins']);
+  grunt.registerTask('build_ios', ['clean:ios', 'build_cordova_www', 'debug_www', 'add_ios', 'cordovacli:build_ios', 'copy:debug_ios']);
+  grunt.registerTask('release_ios', ['clean:ios', 'build_cordova_www', 'release_www', 'add_ios', 'cordovacli:release_ios', 'copy:release_ios']);
+
   grunt.registerTask('build_mobile', ['build_android']);
   grunt.registerTask('release_mobile', ['release_android']);
 

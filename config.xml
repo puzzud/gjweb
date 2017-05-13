@@ -32,6 +32,7 @@
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
     <engine name="android" spec="^5.0.0" />
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
 </widget>
