@@ -11,6 +11,7 @@ module.exports = function (grunt, tasks) {
     // The files that we want to check.
     dist: {
     options: {
+      force: false,
       path: false,
       reportpath: false // Turns logging to a file off, output will show in the CLI.
     },

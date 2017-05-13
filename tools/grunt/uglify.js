@@ -11,7 +11,6 @@ module.exports = function (grunt, tasks) {
     release: {
       options: {
         mangle: {
-          sort: true,
           toplevel: true,
           eval: true
         },
