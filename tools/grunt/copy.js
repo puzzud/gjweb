@@ -1,21 +1,25 @@
 /*global module*/
 
-module.exports = function (grunt, tasks) {
+module.exports = function(grunt, tasks)
+{
   'use strict';
   
   // Load node module required for this task.
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // The configuration for a specific task.
-  tasks.copy = {
-
+  tasks.copy =
+  {
     // Copy Phaser source files into project src.
-    phaser: {
-      files: [
+    phaser:
+    {
+      files:
+      [
         {
           expand: true,
           cwd: grunt.uriNodeModules + 'phaser/build/',
-          src: [
+          src:
+          [
             'phaser*'
           ],
           dest: grunt.uriPhaser,
@@ -25,11 +29,14 @@ module.exports = function (grunt, tasks) {
     },
 
     // Copy critical files into the www sub-directory.
-    www: {
-      files: [
+    www:
+    {
+      files:
+      [
         {
           expand: true,
-          src: [
+          src:
+          [
             grunt.uri + 'assets/**',
             grunt.uriSrc + '**',
             grunt.uri + 'index.html',
@@ -43,12 +50,15 @@ module.exports = function (grunt, tasks) {
     },
 
     // Copy over android build.
-    debug_android: {
-      files: [
+    debug_android:
+    {
+      files:
+      [
         {
           expand: true,
           cwd: grunt.uri + 'platforms/android/build/outputs/apk/',
-          src: [
+          src:
+          [
             'android-*-debug.apk',
             '!android-*unaligned.apk'
           ],
@@ -58,12 +68,15 @@ module.exports = function (grunt, tasks) {
       ]
     },
 
-    release_android: {
-      files: [
+    release_android:
+    {
+      files:
+      [
         {
           expand: true,
           cwd: grunt.uri + 'platforms/android/build/outputs/apk/',
-          src: [
+          src:
+          [
             'android-*-release-unsigned.apk',
             '!android-*unaligned.apk'
           ],
@@ -74,8 +87,10 @@ module.exports = function (grunt, tasks) {
     },
 
     // Copy over web build.
-    web: {
-      files: [
+    web:
+    {
+      files:
+      [
         {
           expand: true,
           cwd: grunt.uri + 'platforms/browser/www/',

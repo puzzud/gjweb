@@ -1,6 +1,7 @@
 /*global module*/
 
-module.exports = function (grunt, tasks) {
+module.exports = function(grunt, tasks)
+{
   'use strict';
   
   // Load node module required for this task.
@@ -30,11 +31,14 @@ module.exports = function (grunt, tasks) {
   jsFileList.push('!' + grunt.uriWwwGame + '*.min.js');
 
   // The configuration for a specific task.
-  tasks.concat = {
-    options: {
+  tasks.concat =
+  {
+    options:
+    {
       separator: ';'
     },
-    www: {
+    www:
+    {
       src: jsFileList,
       dest: grunt.uriWwwGame + 'game.js',
     },

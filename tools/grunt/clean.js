@@ -1,19 +1,22 @@
 /*global module*/
 
-module.exports = function (grunt, tasks) {
+module.exports = function(grunt, tasks)
+{
   'use strict';
   
   // Load node module required for this task.
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // The configuration for a specific task.
-  tasks.clean = {
+  tasks.clean =
+  {
     // Remove www sub-directory.
     www: [grunt.uriWww],
 
     // Remove www sub-directory files which are not
     // intended for debug builds.
-    debug: [
+    debug:
+    [
       '!' + grunt.uriWwwSrc + 'phaser/*.js',
       grunt.uriWwwSrc + 'phaser/*min.js',
       grunt.uriWwwSrc + 'phaser/*.map'
@@ -21,7 +24,8 @@ module.exports = function (grunt, tasks) {
 
     // Remove www sub-directory files which are not
     // intended for release builds.
-    release: [
+    release:
+    [
       grunt.uriWwwGame + '*.js',
       '!' + grunt.uriWwwGame + '*.min.js',
       grunt.uriWwwSrc + 'phaser/*.js',

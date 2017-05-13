@@ -1,20 +1,26 @@
 /*global module*/
 
-module.exports = function (grunt, tasks) {
+module.exports = function(grunt, tasks)
+{
   'use strict';
   
   // Load node module required for this task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
   
   // The configuration for a specific task.
-  tasks.uglify = {
-    release: {
-      options: {
-        mangle: {
+  tasks.uglify =
+  {
+    release:
+    {
+      options:
+      {
+        mangle:
+        {
           toplevel: true,
           eval: true
         },
-        compress: {
+        compress:
+        {
           sequences: true,
           properties: true,
           dead_code: true,
@@ -37,8 +43,10 @@ module.exports = function (grunt, tasks) {
           drop_console: false
         }
       },
-      files: {
-        './www/src/game/game.min.js': [
+      files:
+      {
+        './www/src/game/game.min.js':
+        [
           './www/src/game/game.js',
           '!./www/src/game/*.min.js'
         ]

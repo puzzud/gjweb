@@ -1,13 +1,15 @@
 /*global module*/
 
-module.exports = function (grunt, tasks) {
+module.exports = function(grunt, tasks)
+{
   'use strict';
   
   // Load node module required for this task.
   grunt.loadNpmTasks('grunt-nw-builder');
 
   // The configuration for a specific task.
-  tasks.nwjs = {
+  tasks.nwjs =
+  {
     // The files that we want to check.
     options:
     {

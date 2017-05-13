@@ -1,19 +1,23 @@
 /*global module*/
 
-module.exports = function (grunt, tasks) {
+module.exports = function(grunt, tasks)
+{
   'use strict';
   
   // Load node module required for this task.
   grunt.loadNpmTasks('grunt-replace');
   
   // The configuration for a specific task.
-  tasks.replace = {
-
+  tasks.replace =
+  {
     // Rename all occurrences to GameTitle, gametitle, "Game Title"
     // in this project to match values in the current package.json.
-    rename: {
-      options: {
-        patterns: [
+    rename:
+    {
+      options:
+      {
+        patterns:
+        [
           {
             match: 'gametitle',
             replace: '<%= pkg.name %>'
@@ -30,10 +34,12 @@ module.exports = function (grunt, tasks) {
         usePrefix: false,
         force: false
       },
-      files: [
+      files:
+      [
         {
           expand: true,
-          src: [
+          src:
+          [
             grunt.uri + 'assets/**',
             grunt.uriSrc + '**',
             grunt.uri + 'index.html',

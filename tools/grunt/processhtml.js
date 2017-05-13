@@ -1,6 +1,7 @@
 /*global module*/
 
-module.exports = function (grunt, tasks) {
+module.exports = function(grunt, tasks)
+{
   'use strict';
   /*
   var cordovaFileHash = [];
@@ -13,13 +14,16 @@ module.exports = function (grunt, tasks) {
   grunt.loadNpmTasks('grunt-processhtml');
 
   // The configuration for a specific task.
-  tasks.processhtml = {
-    cordova: {
+  tasks.processhtml =
+  {
+    cordova:
+    {
       options: {},
       //files: cordovaFileHash
       files: {'./www/index.html': ["index.html"]}
     },
-    release: {
+    release:
+    {
       options: {},
       //files: releaseFileHash
       files: {'./www/index.html': ["./www/index.html"]}
