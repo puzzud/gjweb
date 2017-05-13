@@ -38,7 +38,7 @@ GameTitle.Game.prototype.setupInput = function()
   this.menuSystem.setBackEvent(this.returnToMainMenu, this);
 
   // Buttons.
-  var exitButton = this.menuSystem.addButton(this.game.width - 48 - 16, 32, "Exit", this.escapeKeyDown, this);
+  var exitButton = this.menuSystem.addButton(this.game.camera.width - 48 - 16, 32, "Exit", this.escapeKeyDown, this);
   exitButton.input.priorityID = 1;
 
   var mute = GameTitle.getMute();
@@ -66,6 +66,7 @@ GameTitle.Game.prototype.setupGraphics = function()
   // All text.
   var allTextGroup = this.game.add.group();
   allTextGroup.add(this.menuSystem.buttonGroup);
+  allTextGroup.fixedToCamera = true;
   allTextGroup.alpha = 0.0;
 
   this.game.add.tween(allTextGroup).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
@@ -74,14 +75,15 @@ GameTitle.Game.prototype.setupGraphics = function()
 
   this.game.world.bringToTop(allTextGroup);
 
-  var background = this.game.add.sprite( 0, 0 );
+  var background = this.game.add.sprite(0, 0);
   background.fixedToCamera = true;
-  background.scale.setTo( this.game.width, this.game.height );
+  background.scale.setTo(this.game.camera.width, this.game.camera.height);
   background.inputEnabled = true;
   background.input.priorityID = 0;
-  background.events.onInputDown.add( this.pointerDown, this );
+  background.events.onInputDown.add(this.pointerDown, this);
+  background.fixedToCamera = true;
 
-  this.game.world.sendToBack( background );
+  this.game.world.sendToBack(background);
 };
 
 GameTitle.Game.prototype.setupSounds = function()
@@ -135,7 +137,7 @@ GameTitle.Game.prototype.gamepadUpdate = function()
 
 GameTitle.Game.prototype.gamepadOnDown = function(buttonIndex, buttonValue, gamepadIndex)
 {
-  this.makeImpact((this.game.width / 2) | 0, (this.game.height / 2) | 0);
+  this.makeImpact((this.game.camera.width / 2) | 0, (this.game.camera.height / 2) | 0);
 };
 
 GameTitle.Game.prototype.returnToMainMenu = function()
@@ -181,7 +183,7 @@ GameTitle.Game.prototype.createCircleSprite = function()
 
 GameTitle.Game.prototype.adjustBellPitch = function()
 {
-  var verticalScale = 4.0 * (1.0 - (this.targetPoint.y / this.game.world.height));
+  var verticalScale = 4.0 * (1.0 - (this.targetPoint.y / this.game.camera.height));
   this.bell._sound.playbackRate.value = verticalScale;
 };
 
@@ -192,7 +194,7 @@ GameTitle.Game.prototype.resetCircleSprite = function(circleSprite, x, y)
   circleSprite.scale.set(0.5);
   circleSprite.alpha = 1.0;
 
-  var verticalScale = (1.0 - (y / this.game.world.height));
+  var verticalScale = (1.0 - (y / this.game.camera.height));
   var colorAdjustment = (verticalScale * 255) | 0;
   
   var r = 255 - colorAdjustment;

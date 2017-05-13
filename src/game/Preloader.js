@@ -26,8 +26,8 @@ GameTitle.Preloader.prototype.preload = function()
 
   this.preloader = this.game.add.sprite(0, 0, bmd);
   this.preloader.anchor.setTo(0.5, 0.5);
-  this.preloader.position.setTo(this.world.centerX,
-                                 this.world.height - this.preloader.height * 2);
+  //this.preloader.fixedToCamera = true; // Why doesn't fixing to camera work here?
+  this.preloader.position.setTo(this.game.camera.width / 2, this.game.camera.height - this.preloader.height * 2);
   this.load.setPreloadSprite(this.preloader);
 
   this.load.audio("bell2", "assets/sounds/bell2.wav");

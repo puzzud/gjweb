@@ -32,13 +32,13 @@ GameTitle.MainMenu.prototype.setupInput = function()
   this.menuSystem.setBackEvent(this.quitGame, this);
 
   // Buttons.
-  var playButton = this.menuSystem.addButton(this.game.world.centerX, this.game.world.centerY + 48 * 0,
+  var playButton = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 0,
     "Play", this.playGame, this);
 
-  var aboutButton = this.menuSystem.addButton(this.game.world.centerX, this.game.world.centerY + 48 * 1,
+  var aboutButton = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 1,
     "About", this.goToAboutScreen, this);
 
-  var exitButton  = this.menuSystem.addButton(this.game.world.centerX, this.game.world.centerY + 48 * 2,
+  var exitButton  = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 2,
     "Quit", this.quitGame, this);
 
   this.menuSystem.setActiveButton(playButton);

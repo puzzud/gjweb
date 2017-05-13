@@ -214,8 +214,8 @@ GameTitle.gamepadOnAxis = function(gamepad, axisIndex, axisValue)
 GameTitle.setupTitleAndText = function(state, menuSystem)
 {
   // Title.
-  var titleTextX = state.world.centerX;
-  var titleTextY = (state.world.height * (1 - 0.67)) | 0;
+  var titleTextX = this.game.camera.width / 2;
+  var titleTextY = (this.game.camera.height * (1 - 0.67)) | 0;
   
   var titleText = state.add.text(titleTextX, titleTextY,
                                   GameTitle.projectInfo.window.title, GameTitle.titleStyle);
@@ -227,6 +227,7 @@ GameTitle.setupTitleAndText = function(state, menuSystem)
   allTextGroup.add(titleText);
   allTextGroup.add(menuSystem.buttonGroup);
   allTextGroup.alpha = 0.0;
+  allTextGroup.fixedToCamera = true;
 
   this.game.add.tween(allTextGroup).to({alpha: 1}, 500, Phaser.Easing.Linear.None, true);
 };

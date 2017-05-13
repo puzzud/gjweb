@@ -34,7 +34,7 @@ GameTitle.About.prototype.create = function()
     contributorListLength = GameTitle.projectInfo.contributors.length;
  }
 
-  var textStartYPosition = this.game.world.centerY;
+  var textStartYPosition = this.game.camera.height / 2;
   var buttonStartYPosition = textStartYPosition + (contributorListLength + 1) * 48;
   this.setupInput(buttonStartYPosition);
   this.setupGraphics(textStartYPosition);
@@ -46,7 +46,7 @@ GameTitle.About.prototype.setupInput = function(textStartYPosition)
   this.menuSystem.setBackEvent(this.returnToMainMenu, this);
 
   // Buttons.
-  var backButton = this.menuSystem.addButton(this.game.world.centerX, textStartYPosition - ((48 / 2) | 0),
+  var backButton = this.menuSystem.addButton(this.game.camera.width / 2, textStartYPosition - ((48 / 2) | 0),
     "Back", this.returnToMainMenu, this);
 
   this.menuSystem.setActiveButton(backButton);
@@ -93,7 +93,7 @@ GameTitle.About.prototype.setupCredits = function(textStartYPosition)
       GameTitle.projectInfo.contributors === undefined)
   {
     return 0;
- }
+  }
 
   // Create labels and gather total field height.
   var contributorList = GameTitle.projectInfo.contributors;
@@ -101,7 +101,7 @@ GameTitle.About.prototype.setupCredits = function(textStartYPosition)
   // Position the labels based on initial alignment.
   this.contributorRowList.length = 0;
 
-  var gameHorizontalCenter = (this.game.width / 2) | 0;
+  var gameHorizontalCenter = (this.game.camera.width / 2) | 0;
   var columnOffsetFromCenter = 32;
   var nameColumnXPosition = gameHorizontalCenter - columnOffsetFromCenter;
   var contributionColumnXPosition = gameHorizontalCenter + columnOffsetFromCenter;
