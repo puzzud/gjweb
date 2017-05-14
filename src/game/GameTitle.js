@@ -87,7 +87,7 @@ GameTitle.setupNw = function()
     if(this.nw.gui !== null)
     {
       this.nw.window = this.nw.gui.Window.get();
-      this.nw.window.show();
+      //this.nw.window.show();
    }
  }
 };
