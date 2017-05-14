@@ -92,8 +92,8 @@ module.exports = function (grunt) {
   grunt.registerTask('debug_www', ['concat:www', 'clean:debug']);
   grunt.registerTask('release_www', ['concat:www', 'uglify:release', 'clean:release', 'processhtml:release']);
 
-  grunt.registerTask('build_desktop', ['build_www', 'debug_www', 'nwjs']);
-  grunt.registerTask('release_desktop', ['build_www', 'release_www', 'nwjs']);
+  grunt.registerTask('build_desktop', ['build_www', 'debug_www', 'nwjs:debug']);
+  grunt.registerTask('release_desktop', ['build_www', 'release_www', 'nwjs:release']);
   
   grunt.registerTask('insert_cordova', ['processhtml:cordova']);
   grunt.registerTask('build_cordova_www', ['build_www', 'insert_cordova']);
