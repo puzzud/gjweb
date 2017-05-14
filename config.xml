@@ -31,6 +31,11 @@
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="Fullscreen" value="true" />
+    <preference name="BackgroundColor" value="0x00000000" />
+    <preference name="Orientation" value="landscape" />
+    <preference name="EnableViewportScale" value="false" />
     <engine name="android" spec="^5.0.0" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0" />
