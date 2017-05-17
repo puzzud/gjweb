@@ -89,7 +89,7 @@ module.exports = function (grunt) {
   grunt.registerTask('clean_www', ['clean:www']);
   grunt.registerTask('build_www', ['clean_www', 'copy:www']);
   
-  grunt.registerTask('debug_www', ['concat:www', 'clean:debug']);
+  grunt.registerTask('debug_www', ['clean:debug']);
   grunt.registerTask('release_www', ['concat:www', 'uglify:release', 'clean:release', 'processhtml:release']);
 
   grunt.registerTask('build_desktop', ['build_www', 'debug_www', 'nwjs:debug']);
