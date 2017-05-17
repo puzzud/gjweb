@@ -38,9 +38,12 @@ GameTitle.MainMenu.prototype.setupInput = function()
   var aboutButton = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 1,
     "About", this.goToAboutScreen, this);
 
-  var exitButton  = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 2,
-    "Quit", this.quitGame, this);
-
+  if(GameTitle.nw.gui !== null || window.cordova !== undefined)
+  {
+    var exitButton  = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 2,
+      "Quit", this.quitGame, this);
+  }
+  
   this.menuSystem.setActiveButton(playButton);
 };
 

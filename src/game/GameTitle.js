@@ -113,25 +113,13 @@ GameTitle.quit = function()
   {
     // Close application window.
     GameTitle.nw.window.close();
- }
+  }
   else
   if(window.cordova !== undefined && cordova.platformId !== "browser")
   {
     // Close application.
     navigator.app.exitApp();
- }
-  else
-  {
-    // Redirect to project website if running in browser.
-    if(GameTitle.projectInfo === null ||
-        GameTitle.projectInfo.homepage === "")
-    {
-      console.warn("homepage not set in package.json.");
-      return;
-   }
-    
-    window.location = GameTitle.projectInfo.homepage;
- }
+  }
 };
 
 GameTitle.setupGamepadsForMenu = function()
