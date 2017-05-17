@@ -68,28 +68,21 @@ GameTitle.setupPlatform = function()
 
 GameTitle.setupNw = function()
 {
-  // Set up NW.
-  if(typeof(require) !== "undefined")
+  if(window.nw !== undefined)
   {
-    try
-    {
-      this.nw.gui = require("nw.gui");
-   }
-    catch(exception)
-    {
-      this.nw.gui = null;
-      this.nw.window = null;
-      
-      console.error("NW is not present.");
-      return;
-   }
+    this.nw.gui = nw;
+  }
+  else
+  {
+    this.nw.gui = null;
+    this.nw.window = null;
+  }
 
-    if(this.nw.gui !== null)
-    {
-      this.nw.window = this.nw.gui.Window.get();
-      //this.nw.window.show();
-   }
- }
+  if(this.nw.gui !== null)
+  {
+    this.nw.window = this.nw.gui.Window.get();
+    //this.nw.window.show();
+  }
 };
 
 GameTitle.setupCordova = function()
