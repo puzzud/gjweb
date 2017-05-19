@@ -44,6 +44,7 @@ GameTitle.About.prototype.setupInput = function(textStartYPosition)
 {
   this.menuSystem.init();
   this.menuSystem.setBackEvent(this.returnToMainMenu, this);
+  this.menuSystem.enableButtonKeys(true, this);
 
   // Buttons.
   var backButton = this.menuSystem.addButton(this.game.camera.width / 2, textStartYPosition - ((48 / 2) | 0),

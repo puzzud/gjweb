@@ -30,6 +30,7 @@ GameTitle.MainMenu.prototype.setupInput = function()
 {
   this.menuSystem.init();
   this.menuSystem.setBackEvent(this.quitGame, this);
+  this.menuSystem.enableButtonKeys(true, this);
 
   // Buttons.
   var playButton = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 0,

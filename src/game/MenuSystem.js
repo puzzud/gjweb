@@ -21,8 +21,6 @@ GameTitle.MenuSystem = function(game, state)
 
 GameTitle.MenuSystem.prototype.init = function()
 {
-  this.setupButtonKeys(this.state);
-
   this.buttonList.length = 0;
   this.buttonGroup = this.game.add.group();
   this.buttonGroup.fixedToCamera = true;
@@ -82,28 +80,30 @@ GameTitle.MenuSystem.prototype.addButton = function(x, y, text, callback, contex
   return button;
 };
 
-GameTitle.MenuSystem.prototype.setupButtonKeys = function()
+GameTitle.MenuSystem.prototype.enableButtonKeys = function(enable, state)
 {
-  this.state.cursorKeys = this.state.input.keyboard.createCursorKeys();
-  this.state.cursorKeys.up.onDown.add(this.upButtonDown, this);
-  this.state.cursorKeys.down.onDown.add(this.downButtonDown, this);
+  if(enable)
+  {
+    this.state.cursorKeys = this.state.input.keyboard.createCursorKeys();
+    this.state.cursorKeys.up.onDown.add(this.upButtonDown, this);
+    this.state.cursorKeys.down.onDown.add(this.downButtonDown, this);
 
-  this.state.spaceBar = this.state.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-  this.state.spaceBar.onDown.add(this.activateButtonDown, this);
-  this.state.enterKey = this.state.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-  this.state.enterKey.onDown.add(this.activateButtonDown, this);
-};
+    this.state.spaceBar = this.state.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    this.state.spaceBar.onDown.add(this.activateButtonDown, this);
+    this.state.enterKey = this.state.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+    this.state.enterKey.onDown.add(this.activateButtonDown, this);
+  }
+  else
+  {
+    this.state.cursorKeys.up.onDown.removeAll();
+    this.state.cursorKeys.down.onDown.removeAll();
+    this.state.cursorKeys = null;
 
-GameTitle.MenuSystem.prototype.clearButtonKeys = function(state)
-{
-  this.state.cursorKeys.up.onDown.removeAll();
-  this.state.cursorKeys.down.onDown.removeAll();
-  this.state.cursorKeys = null;
-  
-  this.state.spaceBar.onDown.removeAll();
-  this.state.spaceBar = null;
-  this.state.enterKey.onDown.removeAll();
-  this.state.enterKey = null;
+    this.state.spaceBar.onDown.removeAll();
+    this.state.spaceBar = null;
+    this.state.enterKey.onDown.removeAll();
+    this.state.enterKey = null;
+  }
 };
 
 GameTitle.MenuSystem.prototype.cycleActiveButton = function(direction)
