@@ -50,45 +50,4 @@ GameTitle.Boot.prototype.create = function()
 GameTitle.Boot.prototype.processSettings = function()
 {
   GameTitle.retrieveLocalSettings();
-
-  this.processContributorList();
-};
-
-GameTitle.Boot.prototype.processContributorList = function()
-{
-  if(GameTitle.projectInfo === null ||
-      GameTitle.projectInfo.contributors === undefined)
-  {
-    return;
-  }
-
-  var contributorList = GameTitle.projectInfo.contributors;
-  contributorList.sort(this.contributorComparator);
-};
-
-GameTitle.Boot.prototype.contributorComparator = function(a, b)
-{
-  // Sort contributor list by last name, first name, and then contribution.
-  
-  // Pull first and last names from full name.
-  var aContributorName = a.name.split(" ", 2);
-  var bContributorName = b.name.split(" ", 2);
-  
-  var aLastName = (aContributorName[1] === undefined) ? "" : aContributorName[1];
-  var bLastName = (bContributorName[1] === undefined) ? "" : bContributorName[1];
-
-  var comparison = strcmp(aLastName, bLastName);
-  if(comparison === 0)
-  {
-    var aFirstName = (aContributorName[0] === undefined) ? "" : aContributorName[0];
-    var bFirstName = (bContributorName[0] === undefined) ? "" : bContributorName[0];
-  
-    comparison = strcmp(aFirstName, bFirstName);
-    if(comparison === 0)
-    {
-      comparison = strcmp(a.contribution, b.contribution);
-    }
-  }
-
-  return comparison;
 };

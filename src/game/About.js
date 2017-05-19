@@ -27,6 +27,8 @@ GameTitle.About.prototype.create = function()
 {
   this.stage.backgroundColor = 0x444444; 
 
+  this.processContributorList();
+
   var contributorListLength = 0;
   if(GameTitle.projectInfo !== null &&
       GameTitle.projectInfo.contributors !== undefined)
@@ -74,6 +76,45 @@ GameTitle.About.prototype.escapeKeyDown = function()
 GameTitle.About.prototype.returnToMainMenu = function()
 {
   this.state.start(GameTitle.MainMenu.stateKey);
+};
+
+GameTitle.About.prototype.processContributorList = function()
+{
+  if(GameTitle.projectInfo === null ||
+      GameTitle.projectInfo.contributors === undefined)
+  {
+    return;
+  }
+
+  var contributorList = GameTitle.projectInfo.contributors;
+  contributorList.sort(this.contributorComparator);
+};
+
+GameTitle.About.prototype.contributorComparator = function(a, b)
+{
+  // Sort contributor list by last name, first name, and then contribution.
+  
+  // Pull first and last names from full name.
+  var aContributorName = a.name.split(" ", 2);
+  var bContributorName = b.name.split(" ", 2);
+  
+  var aLastName = (aContributorName[1] === undefined) ? "" : aContributorName[1];
+  var bLastName = (bContributorName[1] === undefined) ? "" : bContributorName[1];
+
+  var comparison = strcmp(aLastName, bLastName);
+  if(comparison === 0)
+  {
+    var aFirstName = (aContributorName[0] === undefined) ? "" : aContributorName[0];
+    var bFirstName = (bContributorName[0] === undefined) ? "" : bContributorName[0];
+  
+    comparison = strcmp(aFirstName, bFirstName);
+    if(comparison === 0)
+    {
+      comparison = strcmp(a.contribution, b.contribution);
+    }
+  }
+
+  return comparison;
 };
 
 GameTitle.About.prototype.setupAuthorText = function(textStartYPosition)
