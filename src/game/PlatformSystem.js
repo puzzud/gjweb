@@ -17,7 +17,7 @@ GameTitle.PlatformSystem.prototype.setupNw = function()
 {
   if(window.nw !== undefined)
   {
-    this.nw = nw;
+    this.nw = window.nw;
   }
 };
 
@@ -48,7 +48,7 @@ GameTitle.PlatformSystem.prototype.show = function()
 {
   if(this.nw !== null)
   {
-    var window = this.nw.gui.Window.get();
+    var window = this.nw.Window.get();
     window.show(); 
   }
 };
@@ -58,7 +58,7 @@ GameTitle.PlatformSystem.prototype.quit = function()
   if(this.nw !== null)
   {
     // Close application window.
-    var window = this.nw.gui.Window.get();
+    var window = this.nw.Window.get();
     window.close();
   }
   else if(this.cordova !== null && cordova.platformId !== "browser")
