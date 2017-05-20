@@ -39,10 +39,7 @@ GameTitle.Boot.prototype.create = function()
 
   this.processSettings();
 
-  if(GameTitle.nw.window)
-  {
-    GameTitle.nw.window.show();
-  }
+  GameTitle.platformSystem.show();
 
   this.state.start(GameTitle.Preloader.stateKey);
 };

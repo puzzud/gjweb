@@ -35,18 +35,15 @@ GameTitle =
   gamepadMenuCallbackList: [],
   lastGamepadYAxis: 0.0,
 
-  // NW (formerly Node Webkit) container.
-  nw:
-  {
-    gui: null,
-    window: null
-  }
+  platformSystem: null
 };
 
 GameTitle.run = function()
 {
-  this.game = new Phaser.Game(this.screenWidth, this.screenHeight,
-                               Phaser.AUTO, "", this);
+  this.game = new Phaser.Game(this.screenWidth, this.screenHeight, Phaser.AUTO, "", this);
+
+  this.platformSystem = new GameTitle.PlatformSystem(this.game);
+  this.platformSystem.init();
 
   this.game.state.add(GameTitle.Boot.stateKey, GameTitle.Boot);
   this.game.state.add(GameTitle.Preloader.stateKey, GameTitle.Preloader);
@@ -55,71 +52,11 @@ GameTitle.run = function()
   this.game.state.add(GameTitle.About.stateKey, GameTitle.About);
 
   this.game.state.start(GameTitle.Boot.stateKey);
-
-  this.setupPlatform();
-};
-
-GameTitle.setupPlatform = function()
-{
-  // TODO: Abstract differences between using NW JS and Cordova.
-  this.setupNw();
-  this.setupCordova();
-};
-
-GameTitle.setupNw = function()
-{
-  if(window.nw !== undefined)
-  {
-    this.nw.gui = nw;
-  }
-  else
-  {
-    this.nw.gui = null;
-    this.nw.window = null;
-  }
-
-  if(this.nw.gui !== null)
-  {
-    this.nw.window = this.nw.gui.Window.get();
-    //this.nw.window.show();
-  }
-};
-
-GameTitle.setupCordova = function()
-{
-  if(window.cordova !== undefined)
-  {
-    document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
- }
-};
-
-GameTitle.onDeviceReady = function()
-{
-  document.addEventListener("backbutton", this.onBackButton.bind(this), false);
-};
-
-GameTitle.onBackButton = function(event)
-{
-  if(this.backButtonCallback !== null)
-  {
-    event.preventDefault();
-    this.backButtonCallback.call(this.game.state.getCurrentState());
- }
 };
 
 GameTitle.quit = function()
 {
-  if(GameTitle.nw.window !== null)
-  {
-    // Close application window.
-    GameTitle.nw.window.close();
-  }
-  else
-  if(window.cordova !== undefined && cordova.platformId !== "browser")
-  {
-    // Close application.
-    navigator.app.exitApp();
-  }
+  this.platformSystem.quit();
 };
 
 GameTitle.setupGamepadsForMenu = function()
