@@ -45,12 +45,12 @@ GameTitle.About.prototype.create = function()
 GameTitle.About.prototype.setupInput = function(textStartYPosition)
 {
   this.menuSystem.init();
-  this.menuSystem.setBackEvent(this.returnToMainMenu, this);
+  this.menuSystem.setBackEvent(this.returnToTitle, this);
   this.menuSystem.enableButtonKeys(true, this);
 
   // Buttons.
   var backButton = this.menuSystem.addButton(this.game.camera.width / 2, textStartYPosition - ((48 / 2) | 0),
-    "Back", this.returnToMainMenu, this);
+    "Back", this.returnToTitle, this);
 
   this.menuSystem.setActiveButton(backButton);
 
@@ -70,12 +70,12 @@ GameTitle.About.prototype.escapeKeyDown = function()
 {
   this.menuSystem.setActiveButton(this.exitButton);
 
-  this.returnToMainMenu();
+  this.returnToTitle();
 };
 
-GameTitle.About.prototype.returnToMainMenu = function()
+GameTitle.About.prototype.returnToTitle = function()
 {
-  this.state.start(GameTitle.MainMenu.stateKey);
+  this.state.start(GameTitle.Title.stateKey);
 };
 
 GameTitle.About.prototype.processContributorList = function()

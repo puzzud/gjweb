@@ -35,7 +35,7 @@ GameTitle.Game.prototype.create = function()
 GameTitle.Game.prototype.setupInput = function()
 {
   this.menuSystem.init();
-  this.menuSystem.setBackEvent(this.returnToMainMenu, this);
+  this.menuSystem.setBackEvent(this.returnToTitle, this);
 
   // Buttons.
   var exitButton = this.menuSystem.addButton(this.game.camera.width - 48 - 16, 32, "Exit", this.escapeKeyDown, this);
@@ -99,7 +99,7 @@ GameTitle.Game.prototype.update = function()
 
 GameTitle.Game.prototype.escapeKeyDown = function(button)
 {
-  this.returnToMainMenu();
+  this.returnToTitle();
 };
 
 GameTitle.Game.prototype.pointerDown = function(sprite, pointer)
@@ -140,11 +140,11 @@ GameTitle.Game.prototype.gamepadOnDown = function(buttonIndex, buttonValue, game
   this.makeImpact((this.game.camera.width / 2) | 0, (this.game.camera.height / 2) | 0);
 };
 
-GameTitle.Game.prototype.returnToMainMenu = function()
+GameTitle.Game.prototype.returnToTitle = function()
 {
   this.game.sound.stopAll();
   
-  this.state.start(GameTitle.MainMenu.stateKey);
+  this.state.start(GameTitle.Title.stateKey);
 };
 
 GameTitle.Game.prototype.makeImpact = function(x, y)

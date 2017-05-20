@@ -82,5 +82,5 @@ GameTitle.Preloader.prototype.start = function()
   }
 
   // Proceed to main menu, as usual.
-  this.state.start(GameTitle.MainMenu.stateKey);
+  this.state.start(GameTitle.Title.stateKey);
 };

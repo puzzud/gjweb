@@ -50,7 +50,7 @@ GameTitle.run = function()
 
   this.game.state.add(GameTitle.Boot.stateKey, GameTitle.Boot);
   this.game.state.add(GameTitle.Preloader.stateKey, GameTitle.Preloader);
-  this.game.state.add(GameTitle.MainMenu.stateKey, GameTitle.MainMenu);
+  this.game.state.add(GameTitle.Title.stateKey, GameTitle.Title);
   this.game.state.add(GameTitle.Game.stateKey, GameTitle.Game);
   this.game.state.add(GameTitle.About.stateKey, GameTitle.About);
 

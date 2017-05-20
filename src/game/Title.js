@@ -1,24 +1,24 @@
 /** @constructor */
-GameTitle.MainMenu = function(game)
+GameTitle.Title = function(game)
 {
   this.menuSystem = new GameTitle.MenuSystem(game, this);
 
   this.soundList = [];
 };
 
-GameTitle.MainMenu.stateKey = "MainMenu";
+GameTitle.Title.stateKey = "Title";
 
-GameTitle.MainMenu.prototype.init = function()
+GameTitle.Title.prototype.init = function()
 {
   
 };
 
-GameTitle.MainMenu.prototype.preload = function()
+GameTitle.Title.prototype.preload = function()
 {
   
 };
 
-GameTitle.MainMenu.prototype.create = function()
+GameTitle.Title.prototype.create = function()
 {
   this.stage.backgroundColor = 0x444444; 
 
@@ -26,7 +26,7 @@ GameTitle.MainMenu.prototype.create = function()
   this.setupGraphics();
 };
 
-GameTitle.MainMenu.prototype.setupInput = function()
+GameTitle.Title.prototype.setupInput = function()
 {
   this.menuSystem.init();
   this.menuSystem.setBackEvent(this.quitGame, this);
@@ -48,29 +48,29 @@ GameTitle.MainMenu.prototype.setupInput = function()
   this.menuSystem.setActiveButton(playButton);
 };
 
-GameTitle.MainMenu.prototype.setupGraphics = function()
+GameTitle.Title.prototype.setupGraphics = function()
 {
   GameTitle.setupTitleAndText(this, this.menuSystem);
 };
 
-GameTitle.MainMenu.prototype.playGame = function()
+GameTitle.Title.prototype.playGame = function()
 {
   this.game.sound.stopAll();
 
   this.state.start(GameTitle.Game.stateKey);
 };
 
-GameTitle.MainMenu.prototype.goToAboutScreen = function()
+GameTitle.Title.prototype.goToAboutScreen = function()
 {
   this.state.start(GameTitle.About.stateKey);
 };
 
-GameTitle.MainMenu.prototype.quitGame = function()
+GameTitle.Title.prototype.quitGame = function()
 {
   GameTitle.quit();
 };
 
-GameTitle.MainMenu.prototype.update = function()
+GameTitle.Title.prototype.update = function()
 {
   
 };
