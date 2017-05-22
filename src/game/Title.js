@@ -32,16 +32,19 @@ GameTitle.Title.prototype.setupInput = function()
   this.menuSystem.setBackEvent(this.quitGame, this);
   this.menuSystem.enableButtonKeys(true, this);
 
+  var buttonXPosition = (this.game.camera.width / 2) | 0;
+  var baseButtonYPosition = ((this.game.camera.height / 2) | 0);
+
   // Buttons.
-  var playButton = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 0,
+  var playButton = this.menuSystem.addButton(buttonXPosition, baseButtonYPosition + 96 * 0,
     "Play", this.playGame, this);
 
-  var aboutButton = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 1,
+  var aboutButton = this.menuSystem.addButton(buttonXPosition, baseButtonYPosition + 96 * 1,
     "About", this.goToAboutScreen, this);
 
   if(GameTitle.platformSystem.canBeClosed())
   {
-    var exitButton  = this.menuSystem.addButton(this.game.camera.width / 2, (this.game.camera.height / 2) + 48 * 2,
+    var exitButton  = this.menuSystem.addButton(buttonXPosition, baseButtonYPosition + 96 * 2,
       "Quit", this.quitGame, this);
   }
   

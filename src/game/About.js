@@ -34,12 +34,15 @@ GameTitle.About.prototype.create = function()
       GameTitle.projectInfo.contributors !== undefined)
   {
     contributorListLength = GameTitle.projectInfo.contributors.length;
- }
+  }
+
+  var baseButtonYPosition = ((this.game.camera.height / 2) | 0);
+
+  var buttonStartYPosition = baseButtonYPosition + 96 * 2;
+  this.setupInput(buttonStartYPosition);
 
   var textStartYPosition = this.game.camera.height / 2;
-  var buttonStartYPosition = textStartYPosition + (contributorListLength + 1) * 48;
-  this.setupInput(buttonStartYPosition);
-  this.setupGraphics(textStartYPosition);
+  this.setupGraphics(textStartYPosition - 12);
 };
 
 GameTitle.About.prototype.setupInput = function(textStartYPosition)
@@ -48,8 +51,10 @@ GameTitle.About.prototype.setupInput = function(textStartYPosition)
   this.menuSystem.setBackEvent(this.returnToTitle, this);
   this.menuSystem.enableButtonKeys(true, this);
 
+  var buttonXPosition = (this.game.camera.width / 2) | 0;
+
   // Buttons.
-  var backButton = this.menuSystem.addButton(this.game.camera.width / 2, textStartYPosition - ((48 / 2) | 0),
+  var backButton = this.menuSystem.addButton(buttonXPosition, textStartYPosition,
     "Back", this.returnToTitle, this);
 
   this.menuSystem.setActiveButton(backButton);

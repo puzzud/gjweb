@@ -20,13 +20,8 @@ GameTitle =
   screenWidth: 960,
   screenHeight: 540,
 
-  titleStyle: {font: "72px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 6},
-
-  buttonTextColor: 0xffffff,
-  buttonTextOverColor: 0xffff00,
-  buttonStyle: {font: "32px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 4},
-  buttonActiveStyle: {font: "32px Arial", fill: "#ffffff", fontStyle: "italic", stroke: "#000000", strokeThickness: 4},
-
+  titleStyle: {font: "144px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 8},
+  
   activeButton: null,
 
   backButtonCallback: null,
@@ -133,7 +128,7 @@ GameTitle.setupTitleAndText = function(state, menuSystem)
 {
   // Title.
   var titleTextX = this.game.camera.width / 2;
-  var titleTextY = (this.game.camera.height * (1 - 0.67)) | 0;
+  var titleTextY = ((this.game.camera.height * (1 - 0.67)) | 0) - 36;
   
   var titleText = state.add.text(titleTextX, titleTextY,
                                   GameTitle.projectInfo.window.title, GameTitle.titleStyle);

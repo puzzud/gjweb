@@ -6,8 +6,8 @@ GameTitle.MenuSystem = function(game, state)
 
   this.buttonTextColor = 0xffffff;
   this.buttonTextOverColor = 0xffff00;
-  this.buttonStyle = {font: "32px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 4};
-  this.buttonActiveStyle = {font: "32px Arial", fill: "#ffffff", fontStyle: "italic", stroke: "#000000", strokeThickness: 4};
+  this.buttonStyle = {font: "64px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 6};
+  this.buttonActiveStyle = {font: "64px Arial", fill: "#ffffff", fontStyle: "italic", stroke: "#000000", strokeThickness: 6};
 
   this.buttonList = [];
   this.buttonGroup = null;

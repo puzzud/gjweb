@@ -7,7 +7,9 @@ GameTitle.Game = function(game)
   this.gamepadCallbackList =
   {
     onDown: this.gamepadOnDown
- };
+  };
+
+  this.taskBarButtonStyle = {font: "32px Arial", fill: "#ffffff", stroke: "#000000", strokeThickness: 4};
 
   this.circleSprite = null;
   this.targetPoint = new Phaser.Point();
@@ -38,13 +40,14 @@ GameTitle.Game.prototype.setupInput = function()
   this.menuSystem.setBackEvent(this.returnToTitle, this);
 
   // Buttons.
-  var exitButton = this.menuSystem.addButton(this.game.camera.width - 48 - 16, 32, "Exit", this.escapeKeyDown, this);
+  var baseButtonYPosition = 48;
+  
+  var exitButton = this.menuSystem.addButton(this.game.camera.width - 64, baseButtonYPosition, "Exit", this.escapeKeyDown, this, this.taskBarButtonStyle);
   exitButton.input.priorityID = 1;
 
   var mute = GameTitle.getMute();
   var muteText = mute ? "Unmute" : "  Mute";
-  var muteButtonStyle = mute ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;
-  this.muteButton = this.menuSystem.addButton(exitButton.position.x - 112, 32, muteText, this.toggleMute, this, muteButtonStyle);
+  this.muteButton = this.menuSystem.addButton(exitButton.position.x - 112, baseButtonYPosition, muteText, this.toggleMute, this, this.taskBarButtonStyle);
   this.muteButton.input.priorityID = 1;
 
   // Gamepads.
@@ -223,9 +226,7 @@ GameTitle.Game.prototype.toggleMute = function()
   GameTitle.setMute(mute);
 
   var muteText = mute ? "Unmute" : "  Mute";
-  var muteButtonStyle = mute ? GameTitle.buttonActiveStyle : GameTitle.buttonStyle;
 
   var muteButtonText = this.muteButton.children[0];
   muteButtonText.text = muteText;
-  muteButtonText.setStyle(muteButtonStyle);
 };
