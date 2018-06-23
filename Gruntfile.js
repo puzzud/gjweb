@@ -19,15 +19,15 @@ module.exports = function (grunt) {
 
   // URI Paths
   grunt.uriSrc = grunt.uri + 'src/';
-  grunt.uriGame = grunt.uriSrc + 'game/';
-  grunt.uriPhaser = grunt.uriSrc + 'phaser/';
+  grunt.uriMain = grunt.uriSrc + 'main/';
+  grunt.uriPhaser = grunt.uriSrc + 'phaser/'; // TODO: Do dynamically from package.json.
   
   grunt.uriTools = grunt.uri + 'tools/';
   grunt.uriTask = grunt.uriTools + 'grunt/';
 
   grunt.uriWww = grunt.uri + 'www/';
   grunt.uriWwwSrc = grunt.uriWww + 'src/'
-  grunt.uriWwwGame = grunt.uriWwwSrc + 'game/'
+  grunt.uriWwwMain = grunt.uriWwwSrc + 'main/'
   
   var releaseTaskList =
   [
@@ -51,11 +51,11 @@ module.exports = function (grunt) {
     grunt.buildName = tasks.pkg.name;
   }
   
-  grunt.uriBuildGame = grunt.uriBuild + grunt.buildName + '/';
+  grunt.uriBuildApp = grunt.uriBuild + grunt.buildName + '/';
 
-  grunt.uriBuildWeb = grunt.uriBuildGame + "web/";
-  grunt.uriBuildAndroid = grunt.uriBuildGame + "android/";
-  grunt.uriBuildIos = grunt.uriBuildGame + "ios/";
+  grunt.uriBuildWeb = grunt.uriBuildApp + "web/";
+  grunt.uriBuildAndroid = grunt.uriBuildApp + "android/";
+  grunt.uriBuildIos = grunt.uriBuildApp + "ios/";
 
   grunt.uriNodeModules = grunt.uri + "node_modules/";
 
@@ -116,8 +116,8 @@ module.exports = function (grunt) {
   grunt.registerTask('build', ['lint', 'build_web', 'build_desktop', 'build_mobile']);
   grunt.registerTask('release', ['lint', 'release_web', 'release_desktop', 'release_mobile']);
 
-  grunt.registerTask('setuplibs', ['copy:phaser']);
-  grunt.registerTask('rename_game', ['replace:rename', 'rename:module']);
+  grunt.registerTask('setuplibs', []);
+  grunt.registerTask('rename_app', ['replace:rename', 'rename:module']);
 
   grunt.registerTask('default', ['lint']);
 

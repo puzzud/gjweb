@@ -50,7 +50,7 @@ module.exports = function(grunt, tasks)
         action: 'add',
         plugins:
         [
-          'cordova-plugin-crosswalk-webview'
+          //'cordova-plugin-crosswalk-webview'
         ]
       }
     },
@@ -62,7 +62,7 @@ module.exports = function(grunt, tasks)
         action: 'rm',
         plugins:
         [
-          'cordova-plugin-crosswalk-webview'
+          //'cordova-plugin-crosswalk-webview'
         ]
       }
     },

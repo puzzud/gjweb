@@ -15,8 +15,8 @@ module.exports = function(grunt, tasks)
     {
       src:
       [
-        grunt.uriGame + '*.js', // Include all JS files in this directory.
-        '!' + grunt.uriGame + '*.min.js' // Exclude any files ending with `.min.js`
+        grunt.uriMain + '*.js', // Include all JS files in this directory.
+        '!' + grunt.uriMain + '*.min.js' // Exclude any files ending with `.min.js`
       ]
     }
   };

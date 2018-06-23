@@ -10,15 +10,15 @@ module.exports = function(grunt, tasks)
   // The configuration for a specific task.
   tasks.rename =
   {
-    // Rename src/game/GameTitle.js
+    // Rename src/game/AppTitle.js
     // to match values in the current package.json.
     module:
     {
       files:
       [
         {
-          src: grunt.uriGame + 'GameTitle' + '.js',
-          dest: grunt.uriGame + tasks.pkg.namespace + '.js'
+          src: grunt.uriMain + 'AppTitle' + '.js', // TODO: Get this from package.json.
+          dest: grunt.uriMain + tasks.pkg.namespace + '.js'
         }
       ]
     }

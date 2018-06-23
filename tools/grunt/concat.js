@@ -11,11 +11,11 @@ module.exports = function(grunt, tasks)
   var jsFileList = [];
   if(tasks.indexHtml !== undefined)
   {
-    var buildJsReleaseMatch = tasks.indexHtml.match(/<!--\s*build:js:release\s*src\/game\/game.min.js\s*-->([\s\S]*)<!--\s*\/build\s*-->/i);
+    var buildJsReleaseMatch = tasks.indexHtml.match(/<!--\s*build:js:release\s*src\/main\/Main.min.js\s*-->([\s\S]*)<!--\s*\/build\s*-->/i);
     if(buildJsReleaseMatch !== null)
     {
       var buildJsReleaseString = buildJsReleaseMatch[1];
-      var scriptElementMatch = buildJsReleaseString.match(/<script\s+type="text\/javascript"\s+src="[^"]*">[^<]*<\/script>/gi);
+      var scriptElementMatch = buildJsReleaseString.match(/<script\s+src="[^"]*">[^<]*<\/script>/gi);
       if(scriptElementMatch !== null)
       {
         for(var i = 0; i < scriptElementMatch.length; i++)
@@ -27,8 +27,8 @@ module.exports = function(grunt, tasks)
     }
   }
 
-  jsFileList.push(grunt.uriWwwGame + '*.js');
-  jsFileList.push('!' + grunt.uriWwwGame + '*.min.js');
+  jsFileList.push(grunt.uriWwwMain + '*.js');
+  jsFileList.push('!' + grunt.uriWwwMain + '*.min.js');
 
   // The configuration for a specific task.
   tasks.concat =
@@ -40,7 +40,7 @@ module.exports = function(grunt, tasks)
     www:
     {
       src: jsFileList,
-      dest: grunt.uriWwwGame + 'game.js',
+      dest: grunt.uriWwwMain + 'Main.js',
     },
   };
 

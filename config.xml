@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.gametitle.gametitle" version="0.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Game Title</name>
-    <description>Web based game template for game jams.</description>
-    <author email="author@gametitle.com" href="http://gametitle.com">Author Name</author>
+<widget id="com.apptitle.apptitle" version="0.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>App Title</name>
+    <description>Web based application template.</description>
+    <author email="author@apptitle.com" href="http://apptitle.com">Author Name</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -17,27 +17,22 @@
     <icon density="ldpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
     <icon density="mdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
     <icon density="hdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
-    <icon density="xdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
-    <splash density="lhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
-    <splash density="mhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
-    <splash density="hhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
-    <splash density="xdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <icon density="xhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="ldpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="mdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
+    <splash density="hdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
     <splash density="xhdpi" platform="android" src="assets/graphics/icons/general/icon196x196.png" />
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <preference name="xwalkVersion" value="14+" />
-    <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
-    <preference name="xwalkMode" value="embedded" />
-    <preference name="xwalkMultipleApk" value="true" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Fullscreen" value="true" />
     <preference name="BackgroundColor" value="0x00000000" />
     <preference name="Orientation" value="landscape" />
     <preference name="EnableViewportScale" value="false" />
-    <engine name="android" spec="^5.0.0" />
-    <engine name="ios" spec="^4.4.0" />
-    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.3.0" />
+    <engine name="ios" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <engine name="browser" spec="^5.0.3" />
+    <engine name="android" spec="^7.0.0" />
 </widget>

@@ -26,8 +26,8 @@ module.exports = function(grunt, tasks)
     // intended for release builds.
     release:
     [
-      grunt.uriWwwGame + '*.js',
-      '!' + grunt.uriWwwGame + '*.min.js',
+      grunt.uriWwwMain + '*.js',
+      '!' + grunt.uriWwwMain + '*.min.js',
       grunt.uriWwwSrc + 'phaser/*.js',
       '!' + grunt.uriWwwSrc + 'phaser/*min.js'
     ],

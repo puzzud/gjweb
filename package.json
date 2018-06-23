@@ -1,100 +1,95 @@
 {
-    "name": "gametitle",
-    "namespace": "GameTitle",
-    "version": "0.0.0",
-    "description": "Web based game template for game jams.",
-    "homepage": "http://github.com/puzzud/gjweb",
-    "author": "Author Name <author@gametitle.com> (http://gametitle.com)",
-    "contributors": [
-        {
-            "name": "Andrew Dieffenbach",
-            "email": "puzzud@gmail.com",
-            "url": "http://www.puzzud.com",
-            "contribution": "Code"
-        },
-        {
-            "name": "Tom Hrabchak",
-            "url": "http://www.tomhrabchak.com",
-            "contribution": "Code"
-        },
-        {
-            "name": "Contributor Name3",
-            "email": "contributor3@gametitle.com",
-            "url": "http://github.com/puzzud/gjweb",
-            "contribution": "Art"
-        },
-        {
-            "name": "Contributor Name4",
-            "email": "contributor4@gametitle.com",
-            "url": "http://github.com/puzzud/gjweb",
-            "contribution": "Music"
-        }
-    ],
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/puzzud/gjweb.git"
+  "name": "apptitle",
+  "namespace": "AppTitle",
+  "version": "0.0.0",
+  "description": "Web based application template.",
+  "homepage": "http://github.com/puzzud/webapp",
+  "author": "Author Name <author@apptitle.com> (http://apptitle.com)",
+  "contributors": [
+    {
+      "name": "Andrew Dieffenbach",
+      "email": "puzzud@gmail.com",
+      "url": "http://www.puzzud.com",
+      "contribution": "Code"
     },
-    "bugs": "https://github.com/puzzud/gjweb/issues",
-    "scripts": {
-        "postinstall": "grunt setuplibs",
-        "rename": "grunt rename_game",
-        "lint": "grunt lint",
-        "build": "grunt build",
-        "build_www": "grunt build_www",
-        "build_web": "grunt build_web",
-        "build_desktop": "grunt build_desktop",
-        "build_android": "grunt build_android",
-        "build_mobile": "grunt build_mobile",
-        "release": "grunt release",
-        "release_web": "grunt release_web",
-        "release_desktop": "grunt release_desktop",
-        "release_android": "grunt release_android",
-        "release_mobile": "grunt release_mobile"
+    {
+      "name": "Contributor Name3",
+      "email": "contributor3@apptitle.com",
+      "url": "http://github.com/puzzud/webapp",
+      "contribution": "Code"
     },
-    "dependencies": {
-        "cca": "latest",
-        "cordova": "latest",
-        "cordova-android": "^5.0.0",
-        "cordova-ios": "^4.4.0",
-        "cordova-plugin-crosswalk-webview": "~2.3.0",
-        "cordova-plugin-whitelist": "1",
-        "csslint": "latest",
-        "grunt": "latest",
-        "grunt-contrib-clean": "latest",
-        "grunt-contrib-concat": "latest",
-        "grunt-contrib-copy": "latest",
-        "grunt-contrib-csslint": "latest",
-        "grunt-contrib-cssmin": "latest",
-        "grunt-contrib-htmlmin": "latest",
-        "grunt-contrib-jshint": "latest",
-        "grunt-contrib-rename": "latest",
-        "grunt-contrib-uglify": "latest",
-        "grunt-cordovacli": "latest",
-        "grunt-html": "latest",
-        "grunt-nw-builder": "latest",
-        "grunt-processhtml": "latest",
-        "grunt-replace": "latest",
-        "phaser": "latest",
-        "time-grunt": "latest"
-    },
-    "main": "index.html",
-    "window": {
-        "title": "Game Title",
-        "icon": "assets/graphics/icons/general/icon196x196.png",
-        "show": false,
-        "toolbar": false,
-        "frame": true,
-        "fullscreen": false
-    },
-    "cordova": {
-        "plugins": {
-            "cordova-plugin-crosswalk-webview": {},
-            "cordova-plugin-whitelist": {}
-        },
-        "platforms": [
-            "android",
-            "ios"
-        ]
+    {
+      "name": "Contributor Name4",
+      "email": "contributor4@apptitle.com",
+      "url": "http://github.com/puzzud/webapp",
+      "contribution": "Code"
     }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puzzud/webapp.git"
+  },
+  "bugs": "https://github.com/puzzud/webapp/issues",
+  "scripts": {
+    "postinstall": "grunt setuplibs",
+    "rename": "grunt rename_app",
+    "lint": "grunt lint",
+    "build": "grunt build",
+    "build_www": "grunt build_www",
+    "build_web": "grunt build_web",
+    "build_desktop": "grunt build_desktop",
+    "build_android": "grunt build_android",
+    "build_mobile": "grunt build_mobile",
+    "release": "grunt release",
+    "release_web": "grunt release_web",
+    "release_desktop": "grunt release_desktop",
+    "release_android": "grunt release_android",
+    "release_mobile": "grunt release_mobile"
+  },
+  "dependencies": {
+    "cca": "latest",
+    "cordova": "^8.0.0",
+    "cordova-android": "^7.0.0",
+    "cordova-browser": "^5.0.3",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "csslint": "latest",
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-csslint": "latest",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-htmlmin": "^2.4.0",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-rename": "latest",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-cordovacli": "latest",
+    "grunt-html": "^9.0.0",
+    "grunt-nw-builder": "latest",
+    "grunt-processhtml": "latest",
+    "grunt-replace": "latest",
+    "latest": "^0.2.0",
+    "phaser": "latest",
+    "time-grunt": "latest"
+  },
+  "main": "index.html",
+  "window": {
+    "title": "App Title",
+    "icon": "assets/graphics/icons/general/icon196x196.png",
+    "show": false,
+    "toolbar": false,
+    "frame": true,
+    "fullscreen": false
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "browser",
+      "ios",
+      "android"
+    ]
+  }
 }

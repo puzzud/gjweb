@@ -35,7 +35,6 @@ module.exports = function(grunt, tasks)
           hoist_vars: true,
           if_return: true,
           join_vars: true,
-          cascade: true,
           negate_iife: true,
           pure_getters: true,
           keep_fargs: true,
@@ -45,10 +44,10 @@ module.exports = function(grunt, tasks)
       },
       files:
       {
-        './www/src/game/game.min.js':
+        './www/src/main/Main.min.js':
         [
-          './www/src/game/game.js',
-          '!./www/src/game/*.min.js'
+          './www/src/main/Main.js',
+          '!./www/src/main/*.min.js'
         ]
       }
     }
