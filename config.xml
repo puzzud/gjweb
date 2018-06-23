@@ -30,7 +30,7 @@
     <preference name="Fullscreen" value="true" />
     <preference name="BackgroundColor" value="0x00000000" />
     <preference name="Orientation" value="landscape" />
-    <preference name="EnableViewportScale" value="false" />
+    <preference name="EnableViewportScale" value="true" />
     <engine name="ios" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <engine name="browser" spec="^5.0.3" />

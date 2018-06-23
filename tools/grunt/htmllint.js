@@ -15,7 +15,7 @@ module.exports = function (grunt, tasks)
     {
       options:
       {
-        force: false,
+        force: true,
         path: false,
         reportpath: false // Turns logging to a file off, output will show in the CLI.
       },
